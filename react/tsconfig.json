@@ -1,0 +1,19 @@
+{
+  "extends": "@reactunity/scripts",
+  "compilerOptions": {
+    "baseUrl": "./",
+    "types": [
+      "@reactunity/scripts/main",
+      "@reactunity/scripts/ugui"
+    ],
+    "typeRoots": [
+      "node_modules/@reactunity/scripts/lib/types",
+    ]
+  },
+  "files": [
+    "./src/index.tsx"
+  ],
+  "include": [
+    "./src"
+  ]
+}

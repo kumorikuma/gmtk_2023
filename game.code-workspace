@@ -1,0 +1,21 @@
+{
+	"folders": [
+		{
+			"path": "."
+		},
+		{
+			"path": "Packages"
+		},
+	],
+	"settings": {
+		"[csharp]": {
+			"editor.formatOnSave": true,
+			"editor.defaultFormatter": "ms-dotnettools.csharp",
+		},
+		"[typescriptreact]": {
+			"editor.formatOnSave": true
+		},
+		"editor.formatOnSaveMode": "modificationsIfAvailable",
+		"omnisharp.enableEditorConfigSupport": false,
+	}
+}
