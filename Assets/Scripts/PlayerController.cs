@@ -59,6 +59,7 @@ public class PlayerController : MonoBehaviour {
 
     public void OnJump() {
         inputJumpOnNextFrame = true;
+        Debug.Log("OnJump");
     }
 
     // Using KBM controls, there's a specific button to walk.
@@ -72,14 +73,7 @@ public class PlayerController : MonoBehaviour {
 
     //Character controller movement
     private void Movement() {
-        if (characterController.isGrounded && _velocity.y < 0) {
-            // IsGrounded check becomes false if velocity is set to 0.
-            // See: https://forum.unity.com/threads/charactercontroller-isgrounded-unreliable-or-bad-code.373492/
-            _velocity.y = -.1f;
-        }
-
         if (inputJumpOnNextFrame && characterController.isGrounded) {
-            Animator.SetTrigger("Jump");
             _velocity.y = Mathf.Sqrt(JumpForce * -2f * gravity);
         }
         inputJumpOnNextFrame = false;
@@ -96,29 +90,19 @@ public class PlayerController : MonoBehaviour {
         Vector3 absoluteMoveVector = worldMoveDirection * moveSpeed * Time.deltaTime;
         bool isMoving = absoluteMoveVector.magnitude > 0;
         float forwardSpeed = isMoving ? moveSpeed : 0;
-        Animator.SetBool("IsGrounded", characterController.isGrounded); // Set before character is moved
-        characterController.Move(absoluteMoveVector);
         if (isMoving) {
             // Face the character in the direction of movement
             targetRotation = Quaternion.Euler(0, Mathf.Atan2(worldMoveDirection.x, worldMoveDirection.z) * Mathf.Rad2Deg, 0);
-            // Adjust speed according to how fast character is moving
-            Animator.SetBool("IsWalking", isWalking);
-            Animator.SetBool("IsRunning", !isWalking);
-            // Note: To fix sliding, animation speed needs to be adjusted based on character speed.
-            // Running animation speed should be 30% of character speed.
-        } else {
-            Animator.SetBool("IsWalking", false);
-            Animator.SetBool("IsRunning", false);
         }
 
         // Turn the player incrementally towards the direction of movement
         PlayerModel.transform.rotation = Quaternion.RotateTowards(PlayerModel.transform.rotation, targetRotation, TurnSpeed * Time.deltaTime);
 
-        Animator.applyRootMotion = false;
+        // CharacterController.Move should only be called once, see:
+        // https://forum.unity.com/threads/charactercontroller-isgrounded-unreliable-or-bad-code.373492/
+        characterController.Move(_velocity * Time.deltaTime + absoluteMoveVector);
 
-        // Handle jumping
-        Animator.SetFloat("VerticalVelocity", _velocity.y);
-        characterController.Move(_velocity * Time.deltaTime);
+        // Update velocity from gravity
         _velocity.y += gravity * Time.deltaTime;
     }
 }
