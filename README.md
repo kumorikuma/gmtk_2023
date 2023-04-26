@@ -1,6 +1,7 @@
 # First time setup
 
 1. Pull repository
+2. Setup [VSCode for Unity](https://code.visualstudio.com/docs/other/unity) and use **game.code-workspace** with VSCode for auto-format / auto-complete
 2. Setup ReactUnity (see below)
 3. Try running game and should be able to move around with WASD
 
