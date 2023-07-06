@@ -14,9 +14,11 @@
 5. Open **React/Quick Start** window inside Unity, and install dependencies
 6. **When developing:** Run **npm start** inside **/react** folder
 7. Test UI by going into play mode and on the **Services/ReactUnity** game object, change the **Debug Route** on the **UI Router** script.
+8. **When building:** Note that **npm run build** needs to be run inside **/react** folder, which will generate a JS file inside **Assets/Resources/react** that the game will use in absence of a dev-server connection. **ReactBuildPreprocessor** should run this automatically, and the output can be viewed in the **React/Build Log** menu inside Unity.
 
-Documentation: https://reactunity.github.io/
-Repo: https://github.com/ReactUnity/core
+Documentation: https://reactunity.github.io/  
+Repo: https://github.com/ReactUnity/core  
+Discord: https://discord.gg/UY2EFW5ZKG
 
 # Helpful Links
 
