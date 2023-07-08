@@ -75,11 +75,6 @@ public class PlayerController : MonoBehaviour {
 
     private void FixedUpdate() {
         Movement();
-
-        // If rope is stretched too far, trigger event
-        if (IsBiting) {
-            // float ropeStretch = rope.GetRopeStretchToEndFrom()
-        }
     }
 
     private void Movement()
