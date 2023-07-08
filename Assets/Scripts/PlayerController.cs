@@ -101,7 +101,49 @@ public class PlayerController : MonoBehaviour {
             xAcceleration *= Speed;
             yAcceleration *= Speed;
         }
-        rb.velocity = new Vector3(rb.velocity.x + xAcceleration, rb.velocity.y + yAcceleration, 0);
+
+        float newXVelocity = rb.velocity.x + xAcceleration;
+        float newYVelocity = rb.velocity.y + yAcceleration;
+        Vector3 newVelocity = new Vector3(newXVelocity, newYVelocity, 0);
+
+        // Movement is constrained by rope
+        if (IsBiting) {
+            float ropeStretch = rope.GetRopeStretchFromStartTo(pinnedNode);
+            bool isRopeStretched = ropeStretch > 1.0f;
+
+            float ropeNormalSize = rope.GetRopeNormalSizeFromStartTo(pinnedNode);
+            float ropeMaxStretch = 2.0f;
+            float pctStretched = Mathf.Clamp((ropeStretch - 1.0f) / (ropeMaxStretch - 1.0f), 0, 1);
+            Debug.Log(pctStretched);
+            float ropeMaxSize = ropeMaxStretch * ropeNormalSize;
+            Vector2 ropeAnchorPos2d = new Vector2(rope.GetFirstNode().transform.position.x, rope.GetFirstNode().transform.position.y);
+            Vector2 ropeAnchorToPlayer = rb.position - ropeAnchorPos2d;
+            float distanceToRopeAnchor = ropeAnchorToPlayer.magnitude;
+
+            // Hard stop the distance
+            // if (isRopeStretched && distanceToRopeAnchor > ropeMaxSize) {
+            //     Vector2 futurePosition = new Vector2(newXVelocity, newYVelocity) * Time.fixedDeltaTime + rb.position;
+            //     Vector2 ropeAnchorToFuturePosition = futurePosition - ropeAnchorPos2d;
+            //     float futureDistanceToRopeAnchor = ropeAnchorToFuturePosition.magnitude;
+            //     if (futureDistanceToRopeAnchor > ropeMaxSize) {
+            //         // Adjust the future position
+            //         futurePosition = ropeAnchorToFuturePosition.normalized * ropeMaxSize + ropeAnchorPos2d;
+            //         // Recompute velocity to get us there
+            //         newVelocity = (futurePosition - rb.position) / Time.fixedDeltaTime;
+            //     }
+            // }
+
+            // Gradually slow down the player
+            if (isRopeStretched && distanceToRopeAnchor > ropeNormalSize) {
+                newVelocity = Vector3.Slerp(Vector3.zero, newVelocity, 1.0f - pctStretched);
+            }
+        }
+
+        rb.velocity = newVelocity;
+    }
+
+    void LateUpdate() {
+
     }
 
     private void UpdateRotations() {

@@ -123,10 +123,8 @@ namespace Kotorman
                 if (attachTo != null) {
                     startPosition = attachTo.position;
                 }
-                
-                for (int i = 0; i < _totalNodes; i++)
-                {
-                    Debug.Log(startPosition);
+
+                for (int i = 0; i < _totalNodes; i++) {
                     AddNodeAt(startPosition, false); //update it once in the end
                     startPosition.y -= _nodeDistance;
                 }
@@ -196,9 +194,7 @@ namespace Kotorman
                 }
             }
 
-            private void Simulate()
-            {
-                Debug.Log("Simulate");
+            private void Simulate() {
                 // step each node in rope
                 for (int i = 0; i < RopeNodes.Count; i++) {
                     // derive the velocity from previous frame
@@ -345,6 +341,22 @@ namespace Kotorman
                 return ropeSize;
             }
 
+            public float GetRopeNormalSizeFromStartTo(RopeNode ropeNode) {
+                return ropeNode.NodeIndex * NodeDistance;
+            }
+
+            public float GetRopeStretchFromStartTo(RopeNode ropeNode) {
+                float ropeSize = 0;
+                int segments = 0;
+                for (int i = 0; i < ropeNode.NodeIndex - 1; i++) {
+                    RopeNode nodeA = this.RopeNodes[i];
+                    RopeNode nodeB = this.RopeNodes[i + 1];
+                    ropeSize += (nodeA.transform.position - nodeB.transform.position).magnitude;
+                    segments += 1;
+                }
+                return ropeSize / (segments * NodeDistance);
+            }
+
             public float GetRopeStretchToEndFrom(RopeNode ropeNode) {
                 float ropeSize = 0;
                 int segments = 0;
@@ -365,7 +377,6 @@ namespace Kotorman
                 for (int n = 0; n < RopeNodes.Count; n++)
                 {
                     DrawPositions[n] = new Vector3(RopeNodes[n].transform.position.x, RopeNodes[n].transform.position.y, 0);
-                    Debug.Log("Draw Y: " + RopeNodes[n].transform.position.y);
                 }
 
                 LineRenderer.positionCount = DrawPositions.Length;
