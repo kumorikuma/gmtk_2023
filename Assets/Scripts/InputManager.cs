@@ -19,14 +19,8 @@ public class InputManager : MonoBehaviour {
     }
 
     void OnJoystickLook(InputValue value) {
-        PlayerManager.Instance.CameraController.OnLook(value.Get<Vector2>() * JoystickLookSensitivity);
     }
     void OnMouseLook(InputValue value) {
-        // Inputs come in as Delta, like: <0, -1>, <12, 0>
-        // Main difference with gamepads is that diagonal movement is difficult to capture,
-        // since they can be a series of horizontal/vertical deltas.
-        // There can also be a movement with a really large delta, whereas gamepad is capped out.
-        PlayerManager.Instance.CameraController.OnLook(value.Get<Vector2>() * MouseLookSensitivity);
     }
     void OnPause() {
         MenuSystem.Instance.PauseGame();
