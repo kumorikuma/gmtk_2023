@@ -15,15 +15,6 @@
                     "initialStateCheck": true
                 },
                 {
-                    "name": "Jump",
-                    "type": "Button",
-                    "id": "06c5c377-a71b-487d-b7a3-4cc761033749",
-                    "expectedControlType": "Button",
-                    "processors": "",
-                    "interactions": "",
-                    "initialStateCheck": false
-                },
-                {
                     "name": "JoystickLook",
                     "type": "Value",
                     "id": "a4528ffe-a244-4b87-b5ae-645215e460c1",
@@ -42,15 +33,6 @@
                     "initialStateCheck": true
                 },
                 {
-                    "name": "Walk",
-                    "type": "Value",
-                    "id": "bb089c22-e8c4-4f48-9b2e-7e3a01f69e02",
-                    "expectedControlType": "Button",
-                    "processors": "",
-                    "interactions": "",
-                    "initialStateCheck": true
-                },
-                {
                     "name": "Pause",
                     "type": "Button",
                     "id": "98d3448e-a661-441f-b14b-cdc9cfc5f53c",
@@ -58,6 +40,24 @@
                     "processors": "",
                     "interactions": "",
                     "initialStateCheck": false
+                },
+                {
+                    "name": "Dash",
+                    "type": "Value",
+                    "id": "2da7efb9-f099-46fa-8642-a1673b41ba38",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": true
+                },
+                {
+                    "name": "Bite",
+                    "type": "Value",
+                    "id": "282fe0e8-709e-4019-be2a-5fab3ca3d559",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": true
                 }
             ],
             "bindings": [
@@ -129,28 +129,6 @@
                 },
                 {
                     "name": "",
-                    "id": "323cd4c7-766a-4da2-96c1-59ebae2bf458",
-                    "path": "<XInputController>/buttonSouth",
-                    "interactions": "",
-                    "processors": "",
-                    "groups": "",
-                    "action": "Jump",
-                    "isComposite": false,
-                    "isPartOfComposite": false
-                },
-                {
-                    "name": "",
-                    "id": "b3ed7410-e2ec-47d9-a9b2-85ab8b8faafc",
-                    "path": "<Keyboard>/space",
-                    "interactions": "",
-                    "processors": "",
-                    "groups": "",
-                    "action": "Jump",
-                    "isComposite": false,
-                    "isPartOfComposite": false
-                },
-                {
-                    "name": "",
                     "id": "1f541abc-71f3-4f61-a5e9-1dd610a3d285",
                     "path": "<Gamepad>/rightStick",
                     "interactions": "",
@@ -173,17 +151,6 @@
                 },
                 {
                     "name": "",
-                    "id": "136c051b-9836-44cb-9aaf-7532690cc9e7",
-                    "path": "<Keyboard>/leftShift",
-                    "interactions": "",
-                    "processors": "",
-                    "groups": "",
-                    "action": "Walk",
-                    "isComposite": false,
-                    "isPartOfComposite": false
-                },
-                {
-                    "name": "",
                     "id": "c9a05937-04cd-481d-bfba-75353fc93010",
                     "path": "<Keyboard>/escape",
                     "interactions": "",
@@ -201,6 +168,50 @@
                     "processors": "",
                     "groups": "",
                     "action": "Pause",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "c8cd6244-369e-47e5-ba2d-666ac1befb5b",
+                    "path": "<Keyboard>/j",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Dash",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "5c9e5690-0e12-4194-aac3-7281ccb0fdd4",
+                    "path": "<XInputController>/buttonSouth",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Dash",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "24e024fe-3313-457b-a1a1-aa09999a106d",
+                    "path": "<Keyboard>/k",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Bite",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "2cb97884-fd7a-47d4-9483-de90140fcff1",
+                    "path": "<XInputController>/buttonWest",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Bite",
                     "isComposite": false,
                     "isPartOfComposite": false
                 }

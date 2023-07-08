@@ -9,13 +9,20 @@ public class PlayerController : MonoBehaviour {
 
     [Header("Movement")]
     [SerializeField]
-    private float HorizontalSpeed = 3.0f;
+    private float Speed = 1.0f;
     [SerializeField]
-    private float VerticalSpeed = 3.0f;
+    private float DashSpeed = 3.0f;
+    [SerializeField]
+    private float DashBurstSpeed = 5.0f;
+
+
 
     //Private movement variables
     private Vector2 inputMoveVector;
     private Rigidbody2D rb;
+    private bool isDashing;
+    private bool dashBurst;
+    private bool isBiting;
 
     private void Awake() {
         rb = GetComponent<Rigidbody2D>();
@@ -25,10 +32,16 @@ public class PlayerController : MonoBehaviour {
         inputMoveVector = moveVector;
     }
 
-    public void OnJump() {
+    public void OnDash(bool isPressed) {
+        if (isPressed && !isDashing) {
+            dashBurst = true;
+        }
+        isDashing = isPressed;
+        Debug.Log(isPressed);
     }
 
-    public void OnWalk(bool isWalking) {
+    public void OnBite(bool isPressed) {
+        isBiting = isPressed;
     }
 
     private void Update() {
@@ -40,8 +53,20 @@ public class PlayerController : MonoBehaviour {
 
     private void Movement()
     {
-        float yMove = inputMoveVector.y * VerticalSpeed;
-        float xMove = inputMoveVector.x * HorizontalSpeed;
-        rb.velocity = new Vector3(xMove, yMove, 0);
+        float xAcceleration = inputMoveVector.x;
+        float yAcceleration = inputMoveVector.y;
+        if (isDashing) {
+            xAcceleration *= DashSpeed;
+            yAcceleration *= DashSpeed;
+            if (dashBurst) {
+                dashBurst = false;
+                xAcceleration *= DashBurstSpeed;
+                yAcceleration *= DashBurstSpeed;
+            }
+        } else {
+            xAcceleration *= Speed;
+            yAcceleration *= Speed;
+        }
+        rb.velocity = new Vector3(rb.velocity.x + xAcceleration, rb.velocity.y + yAcceleration, 0);
     }
 }

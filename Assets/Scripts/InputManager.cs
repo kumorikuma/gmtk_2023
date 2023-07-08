@@ -11,17 +11,21 @@ public class InputManager : MonoBehaviour {
     void OnMove(InputValue value) {
         PlayerManager.Instance.PlayerController.OnMove(value.Get<Vector2>());
     }
-    void OnJump() {
-        PlayerManager.Instance.PlayerController.OnJump();
+
+    void OnDash(InputValue value) {
+        PlayerManager.Instance.PlayerController.OnDash(value.isPressed);
     }
-    void OnWalk(InputValue value) {
-        PlayerManager.Instance.PlayerController.OnWalk(value.isPressed);
+
+    void OnBite(InputValue value) {
+        PlayerManager.Instance.PlayerController.OnBite(value.isPressed);
     }
 
     void OnJoystickLook(InputValue value) {
     }
+
     void OnMouseLook(InputValue value) {
     }
+
     void OnPause() {
         MenuSystem.Instance.PauseGame();
     }
