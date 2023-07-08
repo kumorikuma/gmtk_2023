@@ -5,15 +5,12 @@ using UnityEngine;
 public class CameraController : MonoBehaviour {
     [NonNullField]
     public Transform player;
-    [NonNullField]
-    public Camera cam;
 
-    public float horizontalMargin = 0.4f;
-    public float verticalMargin = 0.4f;
-    public float depth = -10;
-    Vector3 target;
-    Vector3 lastPosition;
+    public float transitionY = -30;
+    public float lowerY = -50;
+    public float upperY = -20;
     public float smoothTime = 0.25f;
+    Vector3 target;
     Vector3 currentVelocity;
 
     private void LateUpdate()
@@ -24,20 +21,11 @@ public class CameraController : MonoBehaviour {
 
     void SetTarget()
     {
-        Vector3 movementDelta = player.position - lastPosition;
-        Vector3 screenPos = cam.WorldToScreenPoint(player.position);
-        Vector3 bottomLeft = cam.ViewportToScreenPoint(new Vector3(horizontalMargin,verticalMargin,0));
-        Vector3 topRight = cam.ViewportToScreenPoint(new Vector3(1-horizontalMargin, 1-verticalMargin, 0));
-        if (screenPos.x < bottomLeft.x || screenPos.x > topRight.x)
-        {
-            target.x += movementDelta.x;
+        if (player.position.y < transitionY) {
+            target = new Vector3(0f, lowerY, 0f);
+        } else {
+            target = new Vector3(0f, upperY, 0f);
         }
-        if (screenPos.y < bottomLeft.y || screenPos.y > topRight.y)
-        {
-            target.y += movementDelta.y;
-        }
-        target.z = depth;
-        lastPosition = player.position;
     }
     
     void MoveCamera()

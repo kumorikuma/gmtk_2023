@@ -46,10 +46,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   player: {fileID: 0}
-  cam: {fileID: 6049481029269322906}
-  horizontalMargin: 0
-  verticalMargin: 0.5
-  depth: -5
+  transitionY: -10
+  lowerY: -19
+  upperY: -3
   smoothTime: 0.25
 --- !u!1 &6049481029269322904
 GameObject:
