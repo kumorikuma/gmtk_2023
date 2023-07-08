@@ -3,6 +3,10 @@ using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
 
+// TODO: Exert force on pinned objects?
+// If rope segment between two pinned nodes is stretched too much, a pinned node 
+// that is marked dynamic vs static maybe can be pulled.
+
 namespace Kotorman
 {
     namespace Rope
@@ -120,6 +124,7 @@ namespace Kotorman
                 
                 for (int i = 0; i < _totalNodes; i++)
                 {
+                    Debug.Log(startPosition);
                     AddNodeAt(startPosition, false); //update it once in the end
                     startPosition.y -= _nodeDistance;
                 }
@@ -130,7 +135,7 @@ namespace Kotorman
                 }
 
                 if (endAttachTo != null) {
-                    PinNodeTo(GetLastNode(), endAttachTo);
+                    // PinNodeTo(GetLastNode(), endAttachTo);
                 }
 
                 //for Line Renderer Data
@@ -191,6 +196,7 @@ namespace Kotorman
 
             private void Simulate()
             {
+                Debug.Log("Simulate");
                 // step each node in rope
                 for (int i = 0; i < RopeNodes.Count; i++)
                 {
@@ -199,7 +205,7 @@ namespace Kotorman
                     RopeNodes[i].PreviousPosition = RopeNodes[i].transform.position;
 
                     Vector3 newPos = RopeNodes[i].transform.position + velocity;
-                    newPos += GravityForce * Time.fixedDeltaTime;
+                    newPos += GravityForce * RopeNodes[i].Weight * Time.fixedDeltaTime;
                     Vector3 direction = RopeNodes[i].transform.position - newPos;
 
                     //rotate each node
@@ -338,6 +344,18 @@ namespace Kotorman
                 return ropeSize;
             }
 
+            public float GetRopeStretchToEndFrom(RopeNode ropeNode) {
+                float ropeSize = 0;
+                int segments = 0;
+                for (int i = ropeNode.NodeIndex; i < RopeNodes.Count - 1; i++) {
+                    RopeNode nodeA = this.RopeNodes[i];
+                    RopeNode nodeB = this.RopeNodes[i + 1];
+                    ropeSize += (nodeA.transform.position - nodeB.transform.position).magnitude;
+                    segments += 1;
+                }
+                return ropeSize / (segments * NodeDistance);
+            }
+
             private void DrawRope()
             {
                 //LineRenderer.startWidth = _ropeWidth;
@@ -346,6 +364,7 @@ namespace Kotorman
                 for (int n = 0; n < RopeNodes.Count; n++)
                 {
                     DrawPositions[n] = new Vector3(RopeNodes[n].transform.position.x, RopeNodes[n].transform.position.y, 0);
+                    Debug.Log("Draw Y: " + RopeNodes[n].transform.position.y);
                 }
 
                 LineRenderer.positionCount = DrawPositions.Length;
@@ -381,8 +400,10 @@ namespace Kotorman
             void AddNodeAt(Vector2 pos, bool updateLinePos = false)
             {
                 RopeNode node = Instantiate(ropeNode).GetComponent<RopeNode>();
+                node.PreviousPosition = pos;
                 node.transform.position = pos;
                 node.transform.parent = transform;
+                node.NodeIndex = RopeNodes.Count;
                 RopeNodes.Add(node);
 
                 if (updateLinePos)

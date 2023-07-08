@@ -7,9 +7,11 @@ namespace Kotorman
         public class RopeNode : MonoBehaviour
         {
             public SpriteRenderer spriteRenderer;
-            
+
             [System.NonSerialized] public Vector3 PreviousPosition;
-            [System.NonSerialized] public Transform pinnedTo;
+            public Transform pinnedTo;
+            [System.NonSerialized] public int NodeIndex;
+            public float Weight = 1.0f;
 
             public bool IsPinned() {
                 return pinnedTo != null;

@@ -22,6 +22,9 @@ public class PlayerController : MonoBehaviour {
     private bool isDashing;
     private bool dashBurst;
     private bool isBiting;
+    public bool IsBiting {
+        get => isBiting;
+    }
 
     // Movement animation
     float lastRotationY = 0f;
@@ -31,7 +34,7 @@ public class PlayerController : MonoBehaviour {
     // Fishing rod stuff
     [NonNullField]
     public Rope rope = null;
-    private RopeNode pinnedNode = null;
+    public RopeNode pinnedNode = null;
 
     private void Awake() {
         rb = GetComponent<Rigidbody2D>();
@@ -70,6 +73,11 @@ public class PlayerController : MonoBehaviour {
 
     private void FixedUpdate() {
         Movement();
+
+        // If rope is stretched too far, trigger event
+        if (IsBiting) {
+            // float ropeStretch = rope.GetRopeStretchToEndFrom()
+        }
     }
 
     private void Movement()
