@@ -37,7 +37,6 @@ public class PlayerController : MonoBehaviour {
             dashBurst = true;
         }
         isDashing = isPressed;
-        Debug.Log(isPressed);
     }
 
     public void OnBite(bool isPressed) {

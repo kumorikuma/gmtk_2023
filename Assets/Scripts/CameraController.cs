@@ -4,28 +4,45 @@ using UnityEngine;
 
 public class CameraController : MonoBehaviour {
     [NonNullField]
-    public GameObject Pivot;
-    public float MinVerticalRotation = -20.0f;
-    public float MaxVerticalRotation = 40.0f;
+    public Transform player;
+    [NonNullField]
+    public Camera cam;
 
-    private Vector2 inputLookDirection;
+    public float horizontalMargin = 0.4f;
+    public float verticalMargin = 0.4f;
+    public float depth = -10;
+    Vector3 target;
+    Vector3 lastPosition;
+    public float smoothTime = 0.25f;
+    Vector3 currentVelocity;
 
-    public void OnLook(Vector2 lookVector) {
-        inputLookDirection = lookVector;
+    private void LateUpdate()
+    {
+        SetTarget();
+        MoveCamera();
     }
 
-    private void Update() {
-        // Update camera transform
-        Vector3 localEulerRotation = Pivot.transform.localRotation.eulerAngles;
-        float horizontalRotation = localEulerRotation.y;
-        horizontalRotation += inputLookDirection.x;
-        float verticalRotation = localEulerRotation.x;
-        // Fixes an issue where we might read values like 350deg, and then it'd get clamped down to 40, when it should've been -10.
-        if (verticalRotation > 180) {
-            verticalRotation -= 360;
+    void SetTarget()
+    {
+        Vector3 movementDelta = player.position - lastPosition;
+        Vector3 screenPos = cam.WorldToScreenPoint(player.position);
+        Vector3 bottomLeft = cam.ViewportToScreenPoint(new Vector3(horizontalMargin,verticalMargin,0));
+        Vector3 topRight = cam.ViewportToScreenPoint(new Vector3(1-horizontalMargin, 1-verticalMargin, 0));
+        if (screenPos.x < bottomLeft.x || screenPos.x > topRight.x)
+        {
+            target.x += movementDelta.x;
         }
-        verticalRotation += inputLookDirection.y;
-        verticalRotation = Mathf.Clamp(verticalRotation, MinVerticalRotation, MaxVerticalRotation);
-        Pivot.transform.localRotation = Quaternion.Euler(verticalRotation, horizontalRotation, localEulerRotation.z);
+        if (screenPos.y < bottomLeft.y || screenPos.y > topRight.y)
+        {
+            target.y += movementDelta.y;
+        }
+        target.z = depth;
+        lastPosition = player.position;
     }
+    
+    void MoveCamera()
+    {
+        transform.position = Vector3.SmoothDamp(transform.position, target, ref currentVelocity, smoothTime);
+    }
+
 }
