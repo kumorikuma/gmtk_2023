@@ -15,6 +15,8 @@ public class PlayerController : MonoBehaviour {
     private float DashSpeed = 3.0f;
     [SerializeField]
     private float DashBurstSpeed = 5.0f;
+    [SerializeField]
+    private float Gravity = 1.0f;
 
     //Private movement variables
     private Vector2 inputMoveVector;
@@ -84,7 +86,10 @@ public class PlayerController : MonoBehaviour {
     {
         float xAcceleration = inputMoveVector.x;
         float yAcceleration = inputMoveVector.y;
-        if (isDashing) {
+        if (rb.position.y > 0) {
+            // Fish out of the water
+            yAcceleration = -Gravity;
+        } else if (isDashing) {
             xAcceleration *= DashSpeed;
             yAcceleration *= DashSpeed;
             if (dashBurst) {
