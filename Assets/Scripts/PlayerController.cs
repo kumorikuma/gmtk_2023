@@ -1,5 +1,6 @@
 using System.Collections.Generic;
 using UnityEngine;
+using Kotorman.Rope;
 
 /*Simple player movement controller, based on character controller component,
 with footstep system based on check the current texture of the component*/
@@ -27,6 +28,11 @@ public class PlayerController : MonoBehaviour {
     float rotationSmooth = 5.0f;
     float tiltAngle = 30.0f;
 
+    // Fishing rod stuff
+    [NonNullField]
+    public Rope rope = null;
+    private RopeNode pinnedNode = null;
+
     private void Awake() {
         rb = GetComponent<Rigidbody2D>();
     }
@@ -44,6 +50,18 @@ public class PlayerController : MonoBehaviour {
 
     public void OnBite(bool isPressed) {
         isBiting = isPressed;
+
+        // Pin the rope to the player
+        if (rope != null) {
+            if (pinnedNode == null) {
+                RopeNode node = rope.GetClosestNode(transform.position);
+                rope.PinNodeTo(node, transform);
+                pinnedNode = node;
+            } else {
+                rope.UnpinNode(pinnedNode);
+                pinnedNode = null;
+            }
+        }
     }
 
     private void Update() {
