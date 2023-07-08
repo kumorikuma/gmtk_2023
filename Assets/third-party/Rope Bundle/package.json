@@ -1,0 +1,24 @@
+{
+  "name": "com.kotorman.ropebundle",
+  "version": "1.0.0",
+  "displayName": "Rope Bundle",
+  "description": "Rope Bundle 2D provides easy-to-use rope for different tasks. \nYou can expand its possibilities for yourself by creating custom scripts that will interact with rope.",
+  "unity": "2019.1",
+  "unityRelease": "0b5",
+  "documentationUrl": "https://example.com/",
+  "changelogUrl": "https://example.com/changelog.html",
+  "licensesUrl": "https://example.com/licensing.html",
+  "keywords": [
+    "kotorman",
+    "rope",
+    "chain",
+	"2d",
+	"asset",
+	"swing"
+  ],
+  "author": {
+    "name": "Kotorman",
+    "email": "kotorman.official@gmail.com",
+    "url": "https://www.unity3d.com"
+  }
+}
