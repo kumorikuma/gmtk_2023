@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 705507994}
-  m_IndirectSpecularColor: {r: 0.18028378, g: 0.22571412, b: 0.30692285, a: 1}
+  m_IndirectSpecularColor: {r: 0.18028334, g: 0.2257134, b: 0.30692226, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -168,7 +168,7 @@ PrefabInstance:
     - target: {fileID: 6898316236896007616, guid: a7d019095a95e9941bd3bfe795750eda, type: 3}
       propertyPath: rope
       value: 
-      objectReference: {fileID: 775654125}
+      objectReference: {fileID: 0}
     - target: {fileID: 6898316236896007616, guid: a7d019095a95e9941bd3bfe795750eda, type: 3}
       propertyPath: Sprite
       value: 
@@ -428,17 +428,6 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 50, y: -30, z: 0}
---- !u!114 &775654125 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 1088259440817855824, guid: 44dde0bf808b13d4095802d2b9647f72, type: 3}
-  m_PrefabInstance: {fileID: 1732482070}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: e9a3d19e79f5772449535fb81de5a811, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1 &836699098
 GameObject:
   m_ObjectHideFlags: 0
@@ -794,67 +783,63 @@ MonoBehaviour:
   m_DefaultActionMap: gameplay
   m_SplitScreenIndex: -1
   m_Camera: {fileID: 0}
---- !u!1001 &1732482070
+--- !u!1001 &1118253769
 PrefabInstance:
   m_ObjectHideFlags: 0
   serializedVersion: 2
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
-    - target: {fileID: 1088259440817855824, guid: 44dde0bf808b13d4095802d2b9647f72, type: 3}
-      propertyPath: _maxStretchiness
-      value: 0.1
-      objectReference: {fileID: 0}
-    - target: {fileID: 1088259442031011470, guid: 44dde0bf808b13d4095802d2b9647f72, type: 3}
-      propertyPath: m_Name
-      value: FishingRod
-      objectReference: {fileID: 0}
-    - target: {fileID: 1088259442031011471, guid: 44dde0bf808b13d4095802d2b9647f72, type: 3}
+    - target: {fileID: 6089576657568991972, guid: c5650c1fdc14b7447a42233075477d26, type: 3}
       propertyPath: m_RootOrder
       value: 4
       objectReference: {fileID: 0}
-    - target: {fileID: 1088259442031011471, guid: 44dde0bf808b13d4095802d2b9647f72, type: 3}
+    - target: {fileID: 6089576657568991972, guid: c5650c1fdc14b7447a42233075477d26, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 1088259442031011471, guid: 44dde0bf808b13d4095802d2b9647f72, type: 3}
+    - target: {fileID: 6089576657568991972, guid: c5650c1fdc14b7447a42233075477d26, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 0
+      value: 4.05
       objectReference: {fileID: 0}
-    - target: {fileID: 1088259442031011471, guid: 44dde0bf808b13d4095802d2b9647f72, type: 3}
+    - target: {fileID: 6089576657568991972, guid: c5650c1fdc14b7447a42233075477d26, type: 3}
       propertyPath: m_LocalPosition.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 1088259442031011471, guid: 44dde0bf808b13d4095802d2b9647f72, type: 3}
+    - target: {fileID: 6089576657568991972, guid: c5650c1fdc14b7447a42233075477d26, type: 3}
       propertyPath: m_LocalRotation.w
       value: 1
       objectReference: {fileID: 0}
-    - target: {fileID: 1088259442031011471, guid: 44dde0bf808b13d4095802d2b9647f72, type: 3}
+    - target: {fileID: 6089576657568991972, guid: c5650c1fdc14b7447a42233075477d26, type: 3}
       propertyPath: m_LocalRotation.x
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 1088259442031011471, guid: 44dde0bf808b13d4095802d2b9647f72, type: 3}
+    - target: {fileID: 6089576657568991972, guid: c5650c1fdc14b7447a42233075477d26, type: 3}
       propertyPath: m_LocalRotation.y
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 1088259442031011471, guid: 44dde0bf808b13d4095802d2b9647f72, type: 3}
+    - target: {fileID: 6089576657568991972, guid: c5650c1fdc14b7447a42233075477d26, type: 3}
       propertyPath: m_LocalRotation.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 1088259442031011471, guid: 44dde0bf808b13d4095802d2b9647f72, type: 3}
+    - target: {fileID: 6089576657568991972, guid: c5650c1fdc14b7447a42233075477d26, type: 3}
       propertyPath: m_LocalEulerAnglesHint.x
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 1088259442031011471, guid: 44dde0bf808b13d4095802d2b9647f72, type: 3}
+    - target: {fileID: 6089576657568991972, guid: c5650c1fdc14b7447a42233075477d26, type: 3}
       propertyPath: m_LocalEulerAnglesHint.y
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 1088259442031011471, guid: 44dde0bf808b13d4095802d2b9647f72, type: 3}
+    - target: {fileID: 6089576657568991972, guid: c5650c1fdc14b7447a42233075477d26, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 6089576657568991973, guid: c5650c1fdc14b7447a42233075477d26, type: 3}
+      propertyPath: m_Name
+      value: FishingRod
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
-  m_SourcePrefab: {fileID: 100100000, guid: 44dde0bf808b13d4095802d2b9647f72, type: 3}
+  m_SourcePrefab: {fileID: 100100000, guid: c5650c1fdc14b7447a42233075477d26, type: 3}
 --- !u!1 &1763753927
 GameObject:
   m_ObjectHideFlags: 0
