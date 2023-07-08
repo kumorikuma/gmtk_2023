@@ -15,6 +15,7 @@ namespace Kotorman
             SerializedProperty NodeDistance;
             SerializedProperty BonesVisible;
             SerializedProperty Correction;
+            SerializedProperty MaxStretchiness;
             //int collisionLayers = 0;
             SerializedProperty collisionLayers;
 
@@ -46,6 +47,7 @@ namespace Kotorman
                 EndAttachTo = serializedObject.FindProperty("endAttachTo");
                 NodeDistance = serializedObject.FindProperty("_nodeDistance");
                 Correction = serializedObject.FindProperty("_correction");
+                MaxStretchiness = serializedObject.FindProperty("_maxStretchiness");
                 NodesCount = serializedObject.FindProperty("_totalNodes");
                 collisionLayers = serializedObject.FindProperty("_collisionLayers");
 
@@ -138,6 +140,9 @@ namespace Kotorman
                     EditorGUILayout.Space(3);
 
                     EditorGUILayout.Slider(Correction, 0, 0.9f);
+                    EditorGUILayout.HelpBox("0 - very stretchy rope, 0.9 - tight rope", MessageType.None);
+
+                    EditorGUILayout.Slider(MaxStretchiness, 0, 1.0f);
                     EditorGUILayout.HelpBox("0 - very stretchy rope, 0.9 - tight rope", MessageType.None);
 
                     EditorGUILayout.PropertyField(RotateNodes);

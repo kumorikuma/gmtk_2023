@@ -37,6 +37,8 @@ namespace Kotorman
             [Range(0f, 0.9f)]
             [SerializeField] float _correction = 0.5f;
 
+            [SerializeField] float _maxStretchiness = 0.1f;
+
             [SerializeField] int _totalNodes = 50;
 
             public bool NodesVisible => _nodesVisible;
@@ -198,8 +200,7 @@ namespace Kotorman
             {
                 Debug.Log("Simulate");
                 // step each node in rope
-                for (int i = 0; i < RopeNodes.Count; i++)
-                {
+                for (int i = 0; i < RopeNodes.Count; i++) {
                     // derive the velocity from previous frame
                     Vector3 velocity = RopeNodes[i].transform.position - RopeNodes[i].PreviousPosition;
                     RopeNodes[i].PreviousPosition = RopeNodes[i].transform.position;
@@ -322,7 +323,7 @@ namespace Kotorman
                     }
 
                     // calculate the movement vector
-                    Vector3 movement = direction * difference;
+                    Vector3 movement = Vector3.ClampMagnitude(direction * difference, _maxStretchiness);
 
                     // Apply correction if not pinned
                     if (!node1.IsPinned()) {
