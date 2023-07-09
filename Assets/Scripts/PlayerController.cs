@@ -135,11 +135,26 @@ public class PlayerController : MonoBehaviour {
             //     }
             // }
 
-            // Gradually slow down the player and apply a counter force if they're not moving
+            // Gradually slow down the player and pull them back if the rope is stretched too far
             if (isRopeStretched && distanceToRopeAnchor > ropeNormalSize) {
-                Vector3 maxCounterAcceleration = -ropeAnchorToPlayer.normalized * 1.0f;
+                // This stretches the max to a maximum of about 2x
+                Vector3 maxCounterAcceleration = -ropeAnchorToPlayer.normalized * 1.5f;
                 Vector3 counterAcceleration = Vector3.Slerp(Vector3.zero, maxCounterAcceleration, pctStretched);
                 newVelocity += counterAcceleration;
+                // Debug.Log("ropeStretch: " + ropeStretch);
+                // Vector2 futurePosition = new Vector2(newXVelocity, newYVelocity) + rb.position;
+                // Vector2 ropeAnchorToFuturePosition = futurePosition - ropeAnchorPos2d;
+                // float futureDistanceToRopeAnchor = ropeAnchorToFuturePosition.magnitude;
+                // if (inputMoveVector.magnitude < 0) {
+                //     Debug.Log("Counter force!");
+                //     // Only apply a counter force if the player is not moving
+                //     Vector3 maxCounterAcceleration = -ropeAnchorToPlayer.normalized * 1.0f;
+                //     Vector3 counterAcceleration = Vector3.Slerp(Vector3.zero, maxCounterAcceleration, pctStretched);
+                //     newVelocity += counterAcceleration;
+                // } else if (futureDistanceToRopeAnchor > distanceToRopeAnchor) {
+                //     // Only apply the slowdown if the player is making the rope more stretched
+                //     newVelocity = Vector3.Slerp(Vector3.zero, newVelocity, 1.0f - pctStretched);
+                // }
             }
         }
 
