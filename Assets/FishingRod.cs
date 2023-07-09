@@ -22,6 +22,10 @@ public class FishingRod : MonoBehaviour {
         isHookPinned = false;
     }
 
+    public void DisableHook() {
+        HookObject.GetComponent<BoxCollider2D>().enabled = false;
+    }
+
     void FixedUpdate() {
         RopeNode hookNode = RopeScript.GetLastNode();
         hookNode.Weight = HookWeight;

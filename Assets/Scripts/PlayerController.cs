@@ -118,6 +118,8 @@ public class PlayerController : Singleton<PlayerController> {
             // Unpin the rope and let it free fall for a bit, then make it disappear.
             RodRope.UnpinNode(RodRope.GetFirstNode());
             RodRope.GravityForce = new Vector3(0, -0.01f, 0);
+            // Disable the hook from interacting with things
+            RodRope.transform.parent.GetComponent<FishingRod>().DisableHook();
             Invoke("FadeoutRope", 2.0f);
             GameManager.Instance.GameWon();
         } else {
@@ -263,7 +265,7 @@ public class PlayerController : Singleton<PlayerController> {
             FishingMinigame.SetFishPosition(fishIconPosition);
 
             // Trigger the minigame
-            if (pctStretched >= 1.0f && !isInFishingMinigame) {
+            if (pctStretched >= 0.95f && !isInFishingMinigame) {
                 isInFishingMinigame = true;
 
                 BoatController.FishermanAlert.ShowAlert(false);
