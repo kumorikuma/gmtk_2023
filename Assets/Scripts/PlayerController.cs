@@ -267,6 +267,7 @@ public class PlayerController : Singleton<PlayerController> {
             // Trigger the minigame
             if (pctStretched >= 0.95f && !isInFishingMinigame) {
                 isInFishingMinigame = true;
+                SoundSystem.Instance.ToggleReelingSource(true);
 
                 BoatController.FishermanAlert.ShowAlert(false);
                 FishingMinigame.SetFishermanFollow(true);
@@ -289,6 +290,7 @@ public class PlayerController : Singleton<PlayerController> {
                 FishingMinigame.UpdateStaminaBar();
                 if (FishingMinigame.FishermanStamina <= 0.0f) {
                     EndFishingMinigame(true);
+                    SoundSystem.Instance.ToggleReelingSource(false);
                 }
             }
 

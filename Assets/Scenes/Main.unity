@@ -564,6 +564,11 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 6462838797851981647, guid: 39c5e272c87ee7a4786bbb1490dac7c2, type: 3}
   m_PrefabInstance: {fileID: 6462838797428356142}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &745713370 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 72034322, guid: 6d76370ef697a9442bd4572d116b4e2e, type: 3}
+  m_PrefabInstance: {fileID: 1880535207}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &836699098
 GameObject:
   m_ObjectHideFlags: 0
@@ -1021,10 +1026,6 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
-    - target: {fileID: 350045647742362640, guid: 4ed41e2279c7bba4e821a0d068e7bf08, type: 3}
-      propertyPath: FishermanStaminaDecay
-      value: 0.1
-      objectReference: {fileID: 0}
     - target: {fileID: 350045647742362641, guid: 4ed41e2279c7bba4e821a0d068e7bf08, type: 3}
       propertyPath: m_RootOrder
       value: 8
@@ -1185,6 +1186,18 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 72034323, guid: 6d76370ef697a9442bd4572d116b4e2e, type: 3}
   m_PrefabInstance: {fileID: 1880535207}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &1580050006
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 745713370}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fc2e9fdf9bc50074484cf467425fce07, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!114 &1672472721 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 5150251481429285786, guid: 6d76370ef697a9442bd4572d116b4e2e, type: 3}

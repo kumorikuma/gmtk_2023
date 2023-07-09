@@ -19,6 +19,10 @@ public class SoundSystem : Singleton<SoundSystem> {
     private AudioSource sfxAudioSource;
     [SerializeField]
     private AudioSource levelMusicSource;
+    [SerializeField]
+    private AudioSource reelingAudioSource;
+    [SerializeField]
+    private AudioSource splashAudioSource;
 
     // Private fields
     private Dictionary<string, AudioClip> clips;
@@ -70,5 +74,19 @@ public class SoundSystem : Singleton<SoundSystem> {
         overallVolume = level;
         sfxAudioSource.volume = overallVolume;
         levelMusicSource.volume = overallVolume;
+        reelingAudioSource.volume = overallVolume;
+        splashAudioSource.volume = overallVolume;
+    }
+
+    public void PlaySplash() {
+        splashAudioSource.Play();
+    }
+
+    public void ToggleReelingSource(bool isReeling) {
+        if (isReeling) {
+            reelingAudioSource.Play();
+        } else {
+            reelingAudioSource.Stop();
+        }
     }
 }
