@@ -100,7 +100,7 @@ GameObject:
   - component: {fileID: 72034325}
   m_Layer: 0
   m_Name: Fisherman (fall)
-  m_TagString: Untagged
+  m_TagString: Human
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -166,10 +166,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7adc58acafb21554a89bc180304c9d89, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Boyancy: 7
-  Gravity: 10
-  RandomMotionX: 0
-  RandomMotionY: 2
+  Boyancy: 60
+  Gravity: 50
+  RandomMotionX: 5
+  RandomMotionY: 20
 --- !u!50 &72034326
 Rigidbody2D:
   serializedVersion: 4
@@ -182,7 +182,7 @@ Rigidbody2D:
   m_Simulated: 1
   m_UseFullKinematicContacts: 0
   m_UseAutoMass: 0
-  m_Mass: 1
+  m_Mass: 5
   m_LinearDrag: 1
   m_AngularDrag: 1
   m_GravityScale: 0

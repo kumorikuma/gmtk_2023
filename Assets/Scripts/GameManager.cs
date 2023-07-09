@@ -69,9 +69,7 @@ public class GameManager : Singleton<GameManager>
     }
 
     public void GameWon() {
-        if (currentState == GameState.Game) {
-            GotoGameState(GameState.CollectReward);
-        }
+        GotoGameState(GameState.CollectReward);
     }
 
     public void HumanGrabbed() {
@@ -126,7 +124,7 @@ public class GameManager : Singleton<GameManager>
             break;
             case GameState.CollectReward:
             InstructionsManager.Instance.HideCurrent();
-            InstructionsManager.Instance.ShowMoveDown();
+            InstructionsManager.Instance.ShowCollectHuman();
             if (tutorialComplete) {
                 CameraController.Instance.AllowGoingDown = true;
                 PlayerController.Instance.AllowGoingDown = true;

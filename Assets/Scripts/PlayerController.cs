@@ -118,6 +118,7 @@ public class PlayerController : Singleton<PlayerController> {
             rope.UnpinNode(rope.GetFirstNode());
             rope.GravityForce = new Vector3(0, -0.01f, 0);
             Invoke("FadeoutRope", 2.0f);
+            GameManager.Instance.GameWon();
         } else {
             BoatController.SwitchSprites(FishermanAction.Confused);
             Invoke("ResetConfusedToIdle", 5.0f);
