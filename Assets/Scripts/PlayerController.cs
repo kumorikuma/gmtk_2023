@@ -35,6 +35,7 @@ public class PlayerController : Singleton<PlayerController> {
         get => isBiting;
     }
     private bool isHoldingRope;
+    Grabbable heldObject = null;
 
 
 
@@ -104,18 +105,8 @@ public class PlayerController : Singleton<PlayerController> {
 
         isBiting = !isBiting;
 
-        Grabbable grabbedObject = null;
-        if (isBiting) {
-            grabbedObject = GrabPoint.TryGrab();
-            if (grabbedObject != null && grabbedObject.gameObject.tag == "Human") {
-                GameManager.Instance.HumanGrabbed();
-            }
-        } else {
-            grabbedObject = GrabPoint.TryRelease();
-        }
-
         // Pin the rope to the player
-        if (grabbedObject == null && rope != null) {
+        if (heldObject == null && rope != null) {
             if (pinnedNode == null) {
                 RopeNode node = rope.GetClosestNode(transform.position);
                 // Prevent the player from grabbing the first node
@@ -153,9 +144,20 @@ public class PlayerController : Singleton<PlayerController> {
             }
         }
 
+        // If not interacting with rope, try grabbing/releasing item
+        if (heldObject == null) {
+            heldObject = GrabPoint.TryGrab();
+        } else {
+            GrabPoint.TryRelease();
+            heldObject = null;
+        }
+
         // Tutorial 
         if (pinnedNode != null) {
             GameManager.Instance.GrabTutorialComplete();
+        }
+        if (heldObject != null && heldObject.gameObject.tag == "Human") {
+            GameManager.Instance.HumanGrabbed();
         }
 
         // Failed to bite something
