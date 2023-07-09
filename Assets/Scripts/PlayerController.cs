@@ -48,6 +48,8 @@ public class PlayerController : MonoBehaviour {
     [NonNullField]
     public Minigame FishingMinigame = null;
     private bool isInFishingMinigame = false;
+    [NonNullField]
+    public Boat BoatController = null;
 
     // Instructions
     bool movedUp = false;
@@ -121,6 +123,7 @@ public class PlayerController : MonoBehaviour {
             isInFishingMinigame = false;
             fishermanAlert.ShowAlert(false);
             FishingMinigame.ShowMinigame(false);
+            BoatController.SwitchSprites(FishermanAction.Idle);
         }
 
         // Grab item
@@ -198,6 +201,7 @@ public class PlayerController : MonoBehaviour {
 
                 fishermanAlert.ShowAlert(false);
                 FishingMinigame.SetFishermanFollow(true);
+                BoatController.SwitchSprites(FishermanAction.Pull);
                 // Let go of the line at the right time after the fisherman is tired to win!
 
                 // Dashing / pulling more will make the fish icon go higher
