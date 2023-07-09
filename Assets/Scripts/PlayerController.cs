@@ -7,6 +7,8 @@ with footstep system based on check the current texture of the component*/
 public class PlayerController : MonoBehaviour {
     [SerializeField]
     private GameObject Sprite;
+    [NonNullField]
+    public GrabController GrabPoint;
 
     [Header("Movement")]
     [SerializeField]
@@ -27,6 +29,7 @@ public class PlayerController : MonoBehaviour {
     public bool IsBiting {
         get => isBiting;
     }
+    private bool isHoldingRope;
 
     // Movement animation
     float lastRotationY = 0f;
@@ -40,6 +43,9 @@ public class PlayerController : MonoBehaviour {
 
     private void Awake() {
         rb = GetComponent<Rigidbody2D>();
+
+        // Don't want to have Raycast starting from this to hit itself.
+        Physics2D.queriesStartInColliders = false;
     }
 
     public void OnMove(Vector2 moveVector) {
@@ -74,6 +80,12 @@ public class PlayerController : MonoBehaviour {
                 rope.UnpinNode(pinnedNode);
                 pinnedNode = null;
             }
+        }
+
+        if (isBiting) {
+            GrabPoint.TryGrab();
+        } else {
+            GrabPoint.TryRelease();
         }
     }
 
