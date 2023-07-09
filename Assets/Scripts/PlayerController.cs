@@ -209,12 +209,12 @@ public class PlayerController : Singleton<PlayerController> {
 
     private void UpdateSpriteAnimation() {
         if (inputMoveVector.magnitude > 0.5) {
-            Anim.speed = 1f;
+            Anim.speed = 0.8f;
             if (isDashing) {
                 Anim.speed = 1.5f;
             }
         } else {
-            Anim.speed = 0.5f;
+            Anim.speed = 0.4f;
         }
     }
 
