@@ -40,6 +40,8 @@ public class PlayerController : MonoBehaviour {
     [NonNullField]
     public Rope rope = null;
     public RopeNode pinnedNode = null;
+    [NonNullField]
+    public FishermanAlert fishermanAlert = null;
 
     private void Awake() {
         rb = GetComponent<Rigidbody2D>();
@@ -80,6 +82,15 @@ public class PlayerController : MonoBehaviour {
                 rope.UnpinNode(pinnedNode);
                 pinnedNode = null;
             }
+        }
+
+        // Alert the fisherman
+        // TODO: Only do this if the gameplay state permits it
+        if (isBiting && pinnedNode != null) {
+            fishermanAlert.ShowAlert(true);
+            fishermanAlert.SetAlertness(0);
+        } else if (!isBiting) {
+            fishermanAlert.ShowAlert(false);
         }
 
         if (isBiting) {
@@ -134,6 +145,16 @@ public class PlayerController : MonoBehaviour {
             Vector2 ropeAnchorToPlayer = rb.position - ropeAnchorPos2d;
             float distanceToRopeAnchor = ropeAnchorToPlayer.magnitude;
 
+            Debug.Log("RopeStretch: " + ropeStretch);
+            Debug.Log("DistanceToRopeAnchor: " + distanceToRopeAnchor);
+
+            fishermanAlert.SetAlertness(pctStretched);
+
+            // Trigger the minigame
+            if (pctStretched > 1.0f) {
+
+            }
+
             // Hard stop the distance
             // if (isRopeStretched && distanceToRopeAnchor > ropeMaxSize) {
             //     Vector2 futurePosition = new Vector2(newXVelocity, newYVelocity) * Time.fixedDeltaTime + rb.position;
@@ -150,7 +171,7 @@ public class PlayerController : MonoBehaviour {
             // Gradually slow down the player and pull them back if the rope is stretched too far
             if (isRopeStretched && distanceToRopeAnchor > ropeNormalSize) {
                 // This stretches the max to a maximum of about 2x
-                Vector3 maxCounterAcceleration = -ropeAnchorToPlayer.normalized * 1.5f;
+                Vector3 maxCounterAcceleration = -ropeAnchorToPlayer.normalized * 1.0f;
                 Vector3 counterAcceleration = Vector3.Slerp(Vector3.zero, maxCounterAcceleration, pctStretched);
                 newVelocity += counterAcceleration;
                 // Debug.Log("ropeStretch: " + ropeStretch);
