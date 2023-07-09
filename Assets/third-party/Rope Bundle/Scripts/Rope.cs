@@ -117,7 +117,6 @@ namespace Kotorman
             }
 
             public void Fadeout(float durationS) {
-                Debug.Log("Fadeout Rope!");
                 _shouldFadeout = true;
                 _fadeoutDurationS = durationS;
                 _fadeoutTimerS = 0.0f;
@@ -197,6 +196,7 @@ namespace Kotorman
                     LineRenderer.endColor = newEndColor;
                     if (t >= 1.0f) {
                         this.enabled = false;
+                        this.transform.parent.gameObject.SetActive(false);
                     }
                 }
             }
