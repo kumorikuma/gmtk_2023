@@ -101,6 +101,8 @@ public class GameManager : Singleton<GameManager>
         if (currentState == GameState.Game) {
             // Spawn a new boat and make sure all the references are hooked up properly.
             SpawnNewBoat();
+            CameraController.Instance.AllowGoingDown = false;
+            playerController.AllowGoingDown = false;
         }
     }
 
@@ -177,7 +179,7 @@ public class GameManager : Singleton<GameManager>
             InstructionsManager.Instance.ShowCollectHuman();
             if (tutorialComplete) {
                 CameraController.Instance.AllowGoingDown = true;
-                PlayerController.Instance.AllowGoingDown = true;
+                playerController.AllowGoingDown = true;
             }
             break;
             case GameState.MoveDownTutorial:
