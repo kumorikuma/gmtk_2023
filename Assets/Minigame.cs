@@ -7,6 +7,12 @@ public class Minigame : MonoBehaviour {
     public GameObject FishermanBar;
     public Transform TopOfBar;
 
+    public GameObject StaminaBarFill;
+    private float staminaBarMaxScaleY;
+    public float FishermanStaminaDecay = 0.1f;
+    public float FishermanStaminaRecovery = 0.1f;
+    public float FishermanStamina = 1.0f;
+
     private bool fishermanFollow = false;
     private float followSpeed = 0.1f;
     private float followDelay = 0.325f; // Roughly human reaction time
@@ -25,7 +31,8 @@ public class Minigame : MonoBehaviour {
     private Queue<TimePosition> timePositions = new Queue<TimePosition>();
 
     // Start is called before the first frame update
-    void Start() {
+    void Awake() {
+        staminaBarMaxScaleY = StaminaBarFill.transform.localScale.y;
         ShowMinigame(false);
     }
 
@@ -53,6 +60,21 @@ public class Minigame : MonoBehaviour {
         FishermanBar.transform.position = Vector3.Lerp(FishermanBar.transform.position, targetPosition, followSpeed);
     }
 
+    public void UpdateStaminaBar() {
+        if (doesFishermanBarOverlapFish()) {
+            FishermanStamina += Time.fixedDeltaTime * FishermanStaminaRecovery;
+        } else {
+            FishermanStamina -= Time.fixedDeltaTime * FishermanStaminaDecay;
+        }
+        FishermanStamina = Mathf.Clamp(FishermanStamina, 0, 1);
+        SetStaminaBar(FishermanStamina);
+    }
+
+    private bool doesFishermanBarOverlapFish() {
+        float distanceToFisherman = Mathf.Abs(FishIcon.transform.position.y - FishermanBar.transform.position.y);
+        return distanceToFisherman <= fishermanBarSize / 2.0f;
+    }
+
     public void ShowMinigame(bool isVisible) {
         this.gameObject.SetActive(isVisible);
         if (!isVisible) {
@@ -60,6 +82,8 @@ public class Minigame : MonoBehaviour {
         }
         // Reset the initial position
         FishermanBar.transform.position = Vector3.Lerp(transform.position, TopOfBar.transform.position, 0.6f);
+        FishermanStamina = 1.0f;
+        SetStaminaBar(FishermanStamina);
     }
 
     public void SetFishermanFollow(bool shouldFollow) {
@@ -67,10 +91,11 @@ public class Minigame : MonoBehaviour {
         fishermanFollow = shouldFollow;
     }
 
-    // public void SetFishermanPosition(float t) {
-    //     t = Mathf.Clamp(t, 0, 1);
-    //     FishermanBar.transform.position = Vector3.Lerp(transform.position, TopOfBar.transform.position, t);
-    // }
+    public void SetStaminaBar(float t) {
+        t = Mathf.Clamp(t, 0, 1);
+        float newScaleY = Mathf.Lerp(0.001f, staminaBarMaxScaleY, t);
+        StaminaBarFill.transform.localScale = new Vector3(StaminaBarFill.transform.localScale.x, newScaleY, StaminaBarFill.transform.localScale.z);
+    }
 
     public void SetFishPosition(float t) {
         t = Mathf.Clamp(t, 0, 1);

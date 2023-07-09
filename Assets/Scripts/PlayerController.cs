@@ -98,7 +98,11 @@ public class PlayerController : Singleton<PlayerController> {
     }
 
     public void OnBite(bool isPressed) {
-        isBiting = isPressed;
+        if (!isPressed) {
+            return;
+        }
+
+        isBiting = !isBiting;
 
         bool grabbedObject = false;
         if (isBiting) {
@@ -157,6 +161,11 @@ public class PlayerController : Singleton<PlayerController> {
         if (pinnedNode != null) {
             GameManager.Instance.GrabTutorialComplete();
         }
+
+        // Failed to bite something
+        if (isBiting && pinnedNode == null) {
+            isBiting = false;
+        }
     }
 
     private void Update() {
@@ -214,15 +223,11 @@ public class PlayerController : Singleton<PlayerController> {
             Vector2 ropeAnchorToPlayer = rb.position - ropeAnchorPos2d;
             float distanceToRopeAnchor = ropeAnchorToPlayer.magnitude;
 
-            Debug.Log("RopeStretch: " + ropeStretch);
-            Debug.Log("DistanceToRopeAnchor: " + distanceToRopeAnchor);
-            Debug.Log("Pct Stetch: " + pctStretched);
             fishermanAlert.SetAlertness(pctStretched);
             FishingMinigame.SetFishPosition(fishIconPosition);
 
             // Trigger the minigame
             if (pctStretched >= 1.0f && !isInFishingMinigame) {
-                Debug.Log("Trigger Minigame");
                 isInFishingMinigame = true;
 
                 fishermanAlert.ShowAlert(false);
@@ -241,7 +246,10 @@ public class PlayerController : Singleton<PlayerController> {
             }
 
             if (isInFishingMinigame) {
-
+                FishingMinigame.UpdateStaminaBar();
+                if (FishingMinigame.FishermanStamina <= 0.0f) {
+                    Debug.Log("WIN GAME!!!!");
+                }
             }
 
             // Hard stop the distance
