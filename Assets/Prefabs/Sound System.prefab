@@ -46,7 +46,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ed6fc09329dfad84d8439bcf570b2fe0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  audioClips: []
+  audioClips:
+  - name: splash
+    clip: {fileID: 8300000, guid: 5745904c82413af45916042447cbcee8, type: 3}
+  - name: reel
+    clip: {fileID: 8300000, guid: 838149e566a843d419bcec5076eb0f9c, type: 3}
   levelMusicClips: []
   sfxAudioSource: {fileID: 6462838799333693658}
   levelMusicSource: {fileID: 6462838798096485940}
