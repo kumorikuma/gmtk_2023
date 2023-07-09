@@ -91,8 +91,11 @@ namespace Kotorman
             //int layerMask = 1;
             ContactFilter2D ContactFilter;
             RaycastHit2D[] RaycastHitBuffer = new RaycastHit2D[10];
-            Collider2D[] ColliderHitBuffer = new Collider2D[10]; 
+            Collider2D[] ColliderHitBuffer = new Collider2D[10];
 
+            bool _shouldFadeout = false;
+            float _fadeoutDurationS = 5.0f;
+            float _fadeoutTimerS = 0.0f;
 
             void Awake()
             {
@@ -113,6 +116,11 @@ namespace Kotorman
                 _gravity = tmp;
             }
 
+            public void Fadeout(float durationS) {
+                _shouldFadeout = true;
+                _fadeoutDurationS = durationS;
+                _fadeoutTimerS = 0.0f;
+            }
 
             //----INIT----//
             public void Generate()
@@ -174,6 +182,22 @@ namespace Kotorman
             void Update()
             {
                 DrawRope();
+
+                if (_shouldFadeout && LineRenderer != null) {
+                    _fadeoutTimerS += Time.deltaTime;
+                    Color startColor = LineRenderer.startColor;
+                    Color endColor = LineRenderer.endColor;
+
+                    float t = _fadeoutTimerS / _fadeoutDurationS;
+                    Color newStartColor = new Color(startColor.r, startColor.g, startColor.b, Mathf.Lerp(startColor.a, 0, t));
+                    Color newEndColor = new Color(endColor.r, endColor.g, endColor.b, Mathf.Lerp(endColor.a, 0, t));
+
+                    LineRenderer.startColor = newStartColor;
+                    LineRenderer.endColor = newEndColor;
+                    if (t >= 0.0f) {
+                        this.enabled = false;
+                    }
+                }
             }
 
             private void FixedUpdate()

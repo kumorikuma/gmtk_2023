@@ -25,10 +25,18 @@ public class Grabbable : MonoBehaviour
     public void Grab(Transform grabber) {
         holder = grabber;
         collider.enabled = false;
+        DisableAnimator();
     }
 
     public void Release() {
         holder = null;
         collider.enabled = true;
+    }
+
+    public void DisableAnimator() {
+        var animator = GetComponent<Animator>();
+        if (animator != null) {
+            animator.enabled = false;
+        }
     }
 }

@@ -98,6 +98,29 @@ public class PlayerController : Singleton<PlayerController> {
         }
     }
 
+    private void FadeoutRope() {
+        rope.Fadeout(5.0f);
+    }
+
+    private void EndFishingMinigame(bool success) {
+        isInFishingMinigame = false;
+
+        // Hide minigame UI
+        fishermanAlert.ShowAlert(false);
+        FishingMinigame.ShowMinigame(false);
+
+        if (success) {
+            BoatController.SwitchSprites(FishermanAction.Fall);
+            isBiting = false;
+            // Unpin the rope and let it free fall for a bit, then make it disappear.
+            rope.UnpinNode(rope.GetFirstNode());
+            Invoke("FadeoutRope", 5.0f);
+        } else {
+            BoatController.SwitchSprites(FishermanAction.Confused);
+            Invoke("ResetConfusedToIdle", 5.0f);
+        }
+    }
+
     public void OnBite(bool isPressed) {
         if (!isPressed) {
             return;
@@ -132,14 +155,12 @@ public class PlayerController : Singleton<PlayerController> {
             FishingMinigame.ShowMinigame(true);
             fishermanAlert.SetAlertness(0);
         } else if (!isBiting) {
-            fishermanAlert.ShowAlert(false);
-            FishingMinigame.ShowMinigame(false);
             if (isInFishingMinigame) {
-                // Failed the minigame
-                isInFishingMinigame = false;
-                BoatController.SwitchSprites(FishermanAction.Confused);
-                Invoke("ResetConfusedToIdle", 5.0f);
+                EndFishingMinigame(false);
             } else {
+                // Didn't really succeed or fail at the minigame
+                fishermanAlert.ShowAlert(false);
+                FishingMinigame.ShowMinigame(false);
                 BoatController.SwitchSprites(FishermanAction.Idle);
             }
         }
@@ -248,8 +269,7 @@ public class PlayerController : Singleton<PlayerController> {
             if (isInFishingMinigame) {
                 FishingMinigame.UpdateStaminaBar();
                 if (FishingMinigame.FishermanStamina <= 0.0f) {
-                    BoatController.SwitchSprites(FishermanAction.Fall);
-                    isInFishingMinigame = false; // TODO: End minigame
+                    EndFishingMinigame(true);
                 }
             }
 

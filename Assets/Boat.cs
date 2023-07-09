@@ -11,6 +11,8 @@ public enum FishermanAction {
 
 public class Boat : MonoBehaviour {
     [NonNullField]
+    public GameObject BoatSprite;
+    [NonNullField]
     public GameObject FishermanIdle;
     [NonNullField]
     public GameObject FishermanPull;
@@ -22,6 +24,8 @@ public class Boat : MonoBehaviour {
     public GameObject RodIdle;
     [NonNullField]
     public GameObject RodPull;
+    [NonNullField]
+    public GameObject RodFall;
 
     public FishermanAction CurrentAction = FishermanAction.Idle;
 
@@ -33,6 +37,7 @@ public class Boat : MonoBehaviour {
         FishermanFall.SetActive(false);
         RodIdle.SetActive(false);
         RodPull.SetActive(false);
+        RodFall.SetActive(false);
 
         switch (action) {
             case FishermanAction.Idle:
@@ -49,6 +54,8 @@ public class Boat : MonoBehaviour {
                 break;
             case FishermanAction.Fall:
                 FishermanFall.SetActive(true);
+                RodFall.SetActive(true);
+                BoatSprite.GetComponent<Animator>().enabled = true;
                 break;
         }
     }
