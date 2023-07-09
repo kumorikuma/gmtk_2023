@@ -14,9 +14,9 @@ public class Minigame : MonoBehaviour {
     public float FishermanStamina = 1.0f;
 
     private bool fishermanFollow = false;
-    private float followSpeed = 0.1f;
-    private float followDelay = 0.325f; // Roughly human reaction time
-    private float fishermanBarSize = 1.0f;
+    public float followSpeed = 0.1f;
+    public float followDelay = 0.325f; // Roughly human reaction time
+    public float fishermanBarSize = 1.0f;
 
     private struct TimePosition {
         public float time;
@@ -57,6 +57,7 @@ public class Minigame : MonoBehaviour {
 
         float targetYPos = Mathf.Clamp(timePosFromPast.position.y, transform.position.y + fishermanBarSize / 2.0f, TopOfBar.transform.position.y - fishermanBarSize / 2.0f);
         Vector3 targetPosition = new Vector3(timePosFromPast.position.x, targetYPos, timePosFromPast.position.z);
+        FishermanBar.transform.localScale = new Vector3(FishermanBar.transform.localScale.x, fishermanBarSize, FishermanBar.transform.localScale.z);
         FishermanBar.transform.position = Vector3.Lerp(FishermanBar.transform.position, targetPosition, followSpeed);
     }
 

@@ -25,12 +25,16 @@ public class GameManager : Singleton<GameManager>
     public PlayerController playerController;
 
     [NonNullField]
+    public Minigame minigame;
+
+    [NonNullField]
     public GameObject BoatPrefab;
 
     private GameState currentState;
 
     private bool tutorialComplete = false;
     private bool boatSpawned = false;
+    private int boatsSpawned = 0;
 
     // Start is called before the first frame update
     void Start()
@@ -114,6 +118,40 @@ public class GameManager : Singleton<GameManager>
         PlayerManager.Instance.PlayerController.pinnedNode = null;
         PlayerManager.Instance.PlayerController.BoatController = boatController;
         boatController.StartEntryAnimation();
+
+        int boatBehavior;
+        int numBehaviors = 3;
+        if (boatsSpawned < numBehaviors) {
+            boatBehavior = boatsSpawned;
+        } else {
+            boatBehavior = UnityEngine.Random.Range(0, numBehaviors);
+        }
+
+        switch (boatBehavior) {
+            case 0:
+                Debug.Log("Spawn 0");
+                minigame.fishermanBarSize = 2.0f;
+                minigame.followDelay = 0.325f;
+                minigame.FishermanStaminaDecay = 0.2f;
+                minigame.FishermanStaminaRecovery = 0.2f;
+                break;
+            case 1:
+                Debug.Log("Spawn 1");
+                minigame.fishermanBarSize = 3.0f;
+                minigame.followDelay = 0.5f;
+                minigame.FishermanStaminaDecay = 0.2f;
+                minigame.FishermanStaminaRecovery = 0.2f;
+                break;
+            case 2:
+                Debug.Log("Spawn 2");
+                minigame.fishermanBarSize = 0.5f;
+                minigame.followDelay = 0.15f;
+                minigame.FishermanStaminaDecay = 0.2f;
+                minigame.FishermanStaminaRecovery = 0.2f;
+                break;
+        }
+
+        boatsSpawned += 1;
         return newBoatObj;
     }
 

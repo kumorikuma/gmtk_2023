@@ -46,3 +46,5 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   TitleCard: {fileID: 0}
   playerController: {fileID: 0}
+  minigame: {fileID: 0}
+  BoatPrefab: {fileID: 2513805328155859591, guid: 6d76370ef697a9442bd4572d116b4e2e, type: 3}
