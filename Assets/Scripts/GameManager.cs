@@ -130,13 +130,13 @@ public class GameManager : Singleton<GameManager>
         }
 
         switch (boatBehavior) {
-            case 1:
+            case 0:
                 minigame.fishermanBarSize = 2.0f;
                 minigame.followDelay = 0.325f;
                 minigame.FishermanStaminaDecay = 0.2f;
                 minigame.FishermanStaminaRecovery = 0.2f;
                 break;
-            case 0:
+            case 1:
                 minigame.fishermanBarSize = 0.7f;
                 minigame.followDelay = 0.01f;
                 minigame.FishermanStaminaDecay = 0.2f;

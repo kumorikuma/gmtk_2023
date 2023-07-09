@@ -98,6 +98,7 @@ GameObject:
   - component: {fileID: 72034327}
   - component: {fileID: 72034326}
   - component: {fileID: 72034325}
+  - component: {fileID: 1580050006}
   m_Layer: 0
   m_Name: Fisherman (fall)
   m_TagString: Human
@@ -207,6 +208,18 @@ CapsuleCollider2D:
   m_Offset: {x: -0.0530465, y: 0.062083725}
   m_Size: {x: 2.0669808, y: 4.158179}
   m_Direction: 0
+--- !u!114 &1580050006
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 72034322}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fc2e9fdf9bc50074484cf467425fce07, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &350418585
 GameObject:
   m_ObjectHideFlags: 0
@@ -2093,7 +2106,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7321598243763846845, guid: c5650c1fdc14b7447a42233075477d26, type: 3}
       propertyPath: m_text
-      value: "Use the [K] \nkey to grab ->"
+      value: "Use the [K] \u25BA\nkey to grab \u25BA"
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: c5650c1fdc14b7447a42233075477d26, type: 3}
