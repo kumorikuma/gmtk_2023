@@ -2,9 +2,11 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class CameraController : MonoBehaviour {
+public class CameraController : Singleton<CameraController> {
     [NonNullField]
     public Transform player;
+
+    public bool AllowGoingDown = false;
 
     public float transitionY = -30;
     public float lowerY = -50;
@@ -21,7 +23,7 @@ public class CameraController : MonoBehaviour {
 
     void SetTarget()
     {
-        if (player.position.y < transitionY) {
+        if (AllowGoingDown && player.position.y < transitionY) {
             target = new Vector3(0f, lowerY, 0f);
         } else {
             target = new Vector3(0f, upperY, 0f);

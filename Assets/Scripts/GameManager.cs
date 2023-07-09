@@ -10,7 +10,8 @@ public class GameManager : Singleton<GameManager>
         MoveTutorial,
         GrabTutorial,
         PullTutorial,
-        Game
+        Game,
+        CollectReward
     }
 
     [NonNullField]
@@ -83,9 +84,15 @@ public class GameManager : Singleton<GameManager>
             case GameState.Game:
             InstructionsManager.Instance.HideCurrent();
             break;
+            case GameState.CollectReward:
+            CameraController.Instance.AllowGoingDown = true;
+            PlayerController.Instance.AllowGoingDown = true;
+            break;
             default:
             Debug.LogError($"Reached state {currentState}");
             break;
         }
     }
+
+
 }

@@ -558,8 +558,13 @@ MonoBehaviour:
   DashSpeed: 3
   DashBurstSpeed: 5
   Gravity: 1
+  AllowGoingDown: 0
+  LowestYAllowedOnTopScreen: -12
   rope: {fileID: 0}
   pinnedNode: {fileID: 0}
+  fishermanAlert: {fileID: 0}
+  FishingMinigame: {fileID: 0}
+  BoatController: {fileID: 0}
 --- !u!50 &6898316236896007623
 Rigidbody2D:
   serializedVersion: 4

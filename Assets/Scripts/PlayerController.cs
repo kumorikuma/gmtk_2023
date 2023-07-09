@@ -4,7 +4,7 @@ using Kotorman.Rope;
 
 /*Simple player movement controller, based on character controller component,
 with footstep system based on check the current texture of the component*/
-public class PlayerController : MonoBehaviour {
+public class PlayerController : Singleton<PlayerController> {
     [SerializeField]
     private GameObject Sprite;
     [NonNullField]
@@ -19,6 +19,9 @@ public class PlayerController : MonoBehaviour {
     private float DashBurstSpeed = 5.0f;
     [SerializeField]
     private float Gravity = 1.0f;
+
+    public bool AllowGoingDown = false;
+    public float LowestYAllowedOnTopScreen = -12;
 
     //Private movement variables
     private Vector2 inputMoveVector;
@@ -252,6 +255,11 @@ public class PlayerController : MonoBehaviour {
                 //     newVelocity = Vector3.Slerp(Vector3.zero, newVelocity, 1.0f - pctStretched);
                 // }
             }
+        }
+
+        // Prevent going down before beating minigame
+        if (!AllowGoingDown && rb.position.y < LowestYAllowedOnTopScreen) {
+            newVelocity.y = Mathf.Max(0, newVelocity.y);
         }
 
         rb.velocity = newVelocity;
