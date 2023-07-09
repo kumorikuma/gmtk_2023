@@ -180,14 +180,6 @@ public class PlayerController : Singleton<PlayerController> {
             heldObject = null;
         }
 
-        // Tutorial 
-        if (pinnedNode != null) {
-            GameManager.Instance.GrabTutorialComplete();
-        }
-        if (heldObject != null && heldObject.gameObject.tag == "Human") {
-            GameManager.Instance.HumanGrabbed();
-        }
-
         // Failed to bite something
         if (isBiting && pinnedNode == null) {
             isBiting = false;
@@ -199,6 +191,14 @@ public class PlayerController : Singleton<PlayerController> {
             UpdateRotations();
         }
         UpdateSpriteAnimation();
+
+        // Tutorial 
+        if (pinnedNode != null) {
+            GameManager.Instance.GrabTutorialComplete();
+        }
+        if (heldObject != null && heldObject.gameObject.tag == "Human") {
+            GameManager.Instance.HumanGrabbed();
+        }
     }
 
     private void FixedUpdate() {

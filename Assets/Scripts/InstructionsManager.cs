@@ -79,7 +79,7 @@ public class InstructionsManager : Singleton<InstructionsManager>
         currentlyShown.Add(text);
         if (fade) {
             text.color = new Color(text.color.r, text.color.g, text.color.b, 0);
-            StartCoroutine(FadeInText(fadeTime, text));
+            StartCoroutine(FadeInText(fadeTime * 2f, text));
         }
     }
 
