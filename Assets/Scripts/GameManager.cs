@@ -24,9 +24,13 @@ public class GameManager : Singleton<GameManager>
     [NonNullField]
     public PlayerController playerController;
 
+    [NonNullField]
+    public GameObject BoatPrefab;
+
     private GameState currentState;
 
     private bool tutorialComplete = false;
+    private bool boatSpawned = false;
 
     // Start is called before the first frame update
     void Start()
@@ -90,6 +94,10 @@ public class GameManager : Singleton<GameManager>
     }
 
     public void MovedUp() {
+        if (currentState == GameState.Game) {
+            // Spawn a new boat and make sure all the references are hooked up properly.
+            SpawnNewBoat();
+        }
     }
 
     public void HumanDelivered() {
@@ -99,6 +107,15 @@ public class GameManager : Singleton<GameManager>
     public void StatScreenReadyToContinue() {
         GotoGameState(GameState.StatScreenContinue);
     } 
+
+    public GameObject SpawnNewBoat() {
+        GameObject newBoatObj = Instantiate(BoatPrefab, new Vector3(20, 0.75f, 0), Quaternion.identity);
+        Boat boatController = newBoatObj.GetComponent<Boat>();
+        PlayerManager.Instance.PlayerController.pinnedNode = null;
+        PlayerManager.Instance.PlayerController.BoatController = boatController;
+        boatController.StartEntryAnimation();
+        return newBoatObj;
+    }
 
     private void GotoGameState(GameState state) {
         Debug.Log($"Go to game state {state}");
@@ -112,7 +129,7 @@ public class GameManager : Singleton<GameManager>
             case GameState.GrabTutorial:
             InstructionsManager.Instance.HideCurrent();
             InstructionsManager.Instance.ShowGrab();
-            break;
+                break;
             case GameState.PullTutorial:
             InstructionsManager.Instance.HideCurrent();
             InstructionsManager.Instance.ShowPull();

@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using Kotorman.Rope;
 
 public enum FishermanAction {
     Idle,
@@ -10,6 +11,12 @@ public enum FishermanAction {
 }
 
 public class Boat : MonoBehaviour {
+    [NonNullField]
+    public FishermanAlert FishermanAlert;
+    [NonNullField]
+    public FishingRod FishingRod;
+    [NonNullField]
+    public Rope RodRope;
     [NonNullField]
     public GameObject BoatSprite;
     [NonNullField]
@@ -58,5 +65,17 @@ public class Boat : MonoBehaviour {
                 BoatSprite.GetComponent<Animator>().enabled = true;
                 break;
         }
+    }
+
+    public void StartEntryAnimation() {
+        RodRope.SetPhysicsEnabled(false);
+        // FishingRod.PinHook();
+        GetComponent<Animator>().enabled = true;
+    }
+
+    public void DisableAnimator() {
+        GetComponent<Animator>().enabled = false;
+        RodRope.SetPhysicsEnabled(true);
+        // FishingRod.UnpinHook();
     }
 }

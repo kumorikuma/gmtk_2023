@@ -37,25 +37,22 @@ public class PlayerController : Singleton<PlayerController> {
     private bool isHoldingRope;
     Grabbable heldObject = null;
 
-
-
     // Movement animation
     float lastRotationY = 180f;
     float rotationSmooth = 5.0f;
     float tiltAngle = 30.0f;
 
     // Fishing rod stuff
-    [NonNullField]
-    public Rope rope = null;
     public RopeNode pinnedNode = null;
-    [NonNullField]
-    public FishermanAlert fishermanAlert = null;
 
     [NonNullField]
     public Minigame FishingMinigame = null;
     private bool isInFishingMinigame = false;
     [NonNullField]
     public Boat BoatController = null;
+    private Rope RodRope {
+        get => BoatController.RodRope;
+    }
 
     // Instructions
     bool movedUp = false;
@@ -99,24 +96,24 @@ public class PlayerController : Singleton<PlayerController> {
     }
 
     private void FadeoutRope() {
-        rope.Fadeout(5.0f);
+        RodRope.Fadeout(5.0f);
     }
 
     private void EndFishingMinigame(bool success) {
         isInFishingMinigame = false;
 
         // Hide minigame UI
-        fishermanAlert.ShowAlert(false);
+        BoatController.FishermanAlert.ShowAlert(false);
         FishingMinigame.ShowMinigame(false);
 
         if (success) {
             BoatController.SwitchSprites(FishermanAction.Fall);
             isBiting = false;
-            rope.UnpinNode(pinnedNode);
+            RodRope.UnpinNode(pinnedNode);
             pinnedNode = null;
             // Unpin the rope and let it free fall for a bit, then make it disappear.
-            rope.UnpinNode(rope.GetFirstNode());
-            rope.GravityForce = new Vector3(0, -0.01f, 0);
+            RodRope.UnpinNode(RodRope.GetFirstNode());
+            RodRope.GravityForce = new Vector3(0, -0.01f, 0);
             Invoke("FadeoutRope", 2.0f);
             GameManager.Instance.GameWon();
         } else {
@@ -133,21 +130,21 @@ public class PlayerController : Singleton<PlayerController> {
         isBiting = !isBiting;
 
         // Pin the rope to the player
-        if (heldObject == null && rope != null) {
+        if (heldObject == null && RodRope != null) {
             if (pinnedNode == null) {
-                RopeNode node = rope.GetClosestNode(transform.position);
+                RopeNode node = RodRope.GetClosestNode(transform.position);
                 // Prevent the player from grabbing the first node
-                if (node == rope.GetFirstNode()) {
-                    node = rope.GetNodeAt(1);
+                if (node == RodRope.GetFirstNode()) {
+                    node = RodRope.GetNodeAt(1);
                 }
                 // Only allow the player to grab the rope if they're within a certain distance
                 float distance = (node.transform.position - transform.position).magnitude;
                 if (distance < 0.5f) {
-                    rope.PinNodeTo(node, transform);
+                    RodRope.PinNodeTo(node, transform);
                     pinnedNode = node;
                 }
             } else {
-                rope.UnpinNode(pinnedNode);
+                RodRope.UnpinNode(pinnedNode);
                 pinnedNode = null;
             }
         }
@@ -155,15 +152,15 @@ public class PlayerController : Singleton<PlayerController> {
         // Alert the fisherman
         // TODO: Only do this if the gameplay state permits it
         if (isBiting && pinnedNode != null && !isInFishingMinigame) {
-            fishermanAlert.ShowAlert(true);
+            BoatController.FishermanAlert.ShowAlert(true);
             FishingMinigame.ShowMinigame(true);
-            fishermanAlert.SetAlertness(0);
+            BoatController.FishermanAlert.SetAlertness(0);
         } else if (!isBiting) {
             if (isInFishingMinigame) {
                 EndFishingMinigame(false);
             } else {
                 // Didn't really succeed or fail at the minigame
-                fishermanAlert.ShowAlert(false);
+                BoatController.FishermanAlert.ShowAlert(false);
                 FishingMinigame.ShowMinigame(false);
                 BoatController.SwitchSprites(FishermanAction.Idle);
             }
@@ -231,10 +228,10 @@ public class PlayerController : Singleton<PlayerController> {
 
         // Movement is constrained by rope
         if (IsBiting && pinnedNode != null) {
-            float ropeStretch = rope.GetRopeStretchFromStartTo(pinnedNode);
+            float ropeStretch = RodRope.GetRopeStretchFromStartTo(pinnedNode);
             bool isRopeStretched = ropeStretch > 1.0f;
 
-            float ropeNormalSize = rope.GetRopeNormalSizeFromStartTo(pinnedNode);
+            float ropeNormalSize = RodRope.GetRopeNormalSizeFromStartTo(pinnedNode);
             float ropeMaxStretch = 2.0f;
             float pctStretched = Mathf.Clamp((ropeStretch - 1.0f) / (ropeMaxStretch - 1.0f), 0, 1);
 
@@ -242,18 +239,18 @@ public class PlayerController : Singleton<PlayerController> {
             float fishIconPosition = Mathf.Clamp((ropeStretch - 1.0f) / (ropeMaxStretchForMinigame - 1.0f), 0, 1);
 
             float ropeMaxSize = ropeMaxStretch * ropeNormalSize;
-            Vector2 ropeAnchorPos2d = new Vector2(rope.GetFirstNode().transform.position.x, rope.GetFirstNode().transform.position.y);
+            Vector2 ropeAnchorPos2d = new Vector2(RodRope.GetFirstNode().transform.position.x, RodRope.GetFirstNode().transform.position.y);
             Vector2 ropeAnchorToPlayer = rb.position - ropeAnchorPos2d;
             float distanceToRopeAnchor = ropeAnchorToPlayer.magnitude;
 
-            fishermanAlert.SetAlertness(pctStretched);
+            BoatController.FishermanAlert.SetAlertness(pctStretched);
             FishingMinigame.SetFishPosition(fishIconPosition);
 
             // Trigger the minigame
             if (pctStretched >= 1.0f && !isInFishingMinigame) {
                 isInFishingMinigame = true;
 
-                fishermanAlert.ShowAlert(false);
+                BoatController.FishermanAlert.ShowAlert(false);
                 FishingMinigame.SetFishermanFollow(true);
                 BoatController.SwitchSprites(FishermanAction.Pull);
                 // BoatController.SwitchSprites(FishermanAction.Fall); // TODO: Debug

@@ -44,6 +44,7 @@ namespace Kotorman
             public bool NodesVisible => _nodesVisible;
             [SerializeField] bool _nodesVisible = true;
 
+            public bool EnablePhysics = true;
 
             public bool Collision
             {
@@ -178,6 +179,15 @@ namespace Kotorman
                 }
             }
 
+            public void SetPhysicsEnabled(bool enabled) {
+                EnablePhysics = enabled;
+                if (EnablePhysics) {
+                    // Initialize the simulation with valid values
+                    for (int i = 0; i < RopeNodes.Count; i++) {
+                        RopeNodes[i].PreviousPosition = RopeNodes[i].transform.position;
+                    }
+                }
+            }
 
             void Update()
             {
@@ -203,6 +213,10 @@ namespace Kotorman
 
             private void FixedUpdate()
             {
+                if (!EnablePhysics) {
+                    return;
+                }
+
                 if (_gravity)
                     Simulate();
 

@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 705507994}
-  m_IndirectSpecularColor: {r: 0.18028352, g: 0.22571376, b: 0.30692244, a: 1}
+  m_IndirectSpecularColor: {r: 0.18028334, g: 0.2257134, b: 0.30692226, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -171,17 +171,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bdac15b7bd1676448bb4df34b38cdc49, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
---- !u!114 &133205529 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 133205529, guid: 6d76370ef697a9442bd4572d116b4e2e, type: 3}
-  m_PrefabInstance: {fileID: 1880535207}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: afd69321f2a0af9418989f7977431265, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!114 &202191851 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 8514587319315763125, guid: a6dd660811967e64cab163183668f74e, type: 3}
@@ -215,7 +204,7 @@ PrefabInstance:
     - target: {fileID: 6898316236896007616, guid: a7d019095a95e9941bd3bfe795750eda, type: 3}
       propertyPath: FishingMinigame
       value: 
-      objectReference: {fileID: 133205529}
+      objectReference: {fileID: 1383006570}
     - target: {fileID: 6898316236896007617, guid: a7d019095a95e9941bd3bfe795750eda, type: 3}
       propertyPath: m_RootOrder
       value: 0
@@ -1019,6 +1008,74 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ead69b9db89035a408568883cd7c22b2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!1001 &1383006569
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 350045647742362641, guid: 4ed41e2279c7bba4e821a0d068e7bf08, type: 3}
+      propertyPath: m_RootOrder
+      value: 8
+      objectReference: {fileID: 0}
+    - target: {fileID: 350045647742362641, guid: 4ed41e2279c7bba4e821a0d068e7bf08, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: -4.4
+      objectReference: {fileID: 0}
+    - target: {fileID: 350045647742362641, guid: 4ed41e2279c7bba4e821a0d068e7bf08, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: -2.75
+      objectReference: {fileID: 0}
+    - target: {fileID: 350045647742362641, guid: 4ed41e2279c7bba4e821a0d068e7bf08, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 350045647742362641, guid: 4ed41e2279c7bba4e821a0d068e7bf08, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 350045647742362641, guid: 4ed41e2279c7bba4e821a0d068e7bf08, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 350045647742362641, guid: 4ed41e2279c7bba4e821a0d068e7bf08, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 350045647742362641, guid: 4ed41e2279c7bba4e821a0d068e7bf08, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 350045647742362641, guid: 4ed41e2279c7bba4e821a0d068e7bf08, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 350045647742362641, guid: 4ed41e2279c7bba4e821a0d068e7bf08, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 350045647742362641, guid: 4ed41e2279c7bba4e821a0d068e7bf08, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 350045647742362654, guid: 4ed41e2279c7bba4e821a0d068e7bf08, type: 3}
+      propertyPath: m_Name
+      value: Minigame
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: 4ed41e2279c7bba4e821a0d068e7bf08, type: 3}
+--- !u!114 &1383006570 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 350045647742362640, guid: 4ed41e2279c7bba4e821a0d068e7bf08, type: 3}
+  m_PrefabInstance: {fileID: 1383006569}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: afd69321f2a0af9418989f7977431265, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1001 &1414741424
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -1318,6 +1375,10 @@ PrefabInstance:
       propertyPath: TitleCard
       value: 
       objectReference: {fileID: 0}
+    - target: {fileID: 4072501996008102230, guid: dbbebc1b2a726b04a9794529e982e5ac, type: 3}
+      propertyPath: BoatPrefab
+      value: 
+      objectReference: {fileID: 2513805328155859591, guid: 6d76370ef697a9442bd4572d116b4e2e, type: 3}
     - target: {fileID: 4072501996008102230, guid: dbbebc1b2a726b04a9794529e982e5ac, type: 3}
       propertyPath: playerController
       value: 
