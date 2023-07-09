@@ -109,6 +109,7 @@ public class PlayerController : Singleton<PlayerController> {
         // Hide minigame UI
         BoatController.FishermanAlert.ShowAlert(false);
         FishingMinigame.ShowMinigame(false);
+        SoundSystem.Instance.ToggleReelingSource(false);
 
         if (success) {
             BoatController.SwitchSprites(FishermanAction.Fall);
@@ -290,7 +291,6 @@ public class PlayerController : Singleton<PlayerController> {
                 FishingMinigame.UpdateStaminaBar();
                 if (FishingMinigame.FishermanStamina <= 0.0f) {
                     EndFishingMinigame(true);
-                    SoundSystem.Instance.ToggleReelingSource(false);
                 }
             }
 
