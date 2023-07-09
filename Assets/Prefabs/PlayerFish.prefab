@@ -429,6 +429,7 @@ GameObject:
   m_Component:
   - component: {fileID: 6898316236647326764}
   - component: {fileID: 6898316236647326755}
+  - component: {fileID: 1060987900541842506}
   m_Layer: 0
   m_Name: Sprite
   m_TagString: Untagged
@@ -445,7 +446,7 @@ Transform:
   m_GameObject: {fileID: 6898316236647326765}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalScale: {x: 2, y: 2, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 3844737017694864049}
@@ -504,6 +505,27 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!95 &1060987900541842506
+Animator:
+  serializedVersion: 5
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6898316236647326765}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: 9bb671db874cadb4d9e01dc08963f2ce, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_StabilizeFeet: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorStateOnDisable: 0
+  m_WriteDefaultValuesOnDisable: 0
 --- !u!1 &6898316236896007618
 GameObject:
   m_ObjectHideFlags: 0
@@ -554,6 +576,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Sprite: {fileID: 6898316236647326765}
   GrabPoint: {fileID: 5364480918203008662}
+  Anim: {fileID: 1060987900541842506}
   Speed: 1
   DashSpeed: 1
   DashBurstSpeed: 5
@@ -562,9 +585,7 @@ MonoBehaviour:
   LowestYAllowedOnTopScreen: -12
   LowestYAllowedOnBottomScreen: -24
   XBound: 18
-  rope: {fileID: 0}
   pinnedNode: {fileID: 0}
-  fishermanAlert: {fileID: 0}
   FishingMinigame: {fileID: 0}
   BoatController: {fileID: 0}
 --- !u!50 &6898316236896007623

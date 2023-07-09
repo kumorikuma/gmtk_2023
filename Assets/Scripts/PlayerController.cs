@@ -9,6 +9,8 @@ public class PlayerController : Singleton<PlayerController> {
     private GameObject Sprite;
     [NonNullField]
     public GrabController GrabPoint;
+    [SerializeField]
+    private Animator Anim;
 
     [Header("Movement")]
     [SerializeField]
@@ -194,6 +196,7 @@ public class PlayerController : Singleton<PlayerController> {
         if (!isAnimatingEntry) {
             UpdateRotations();
         }
+        UpdateSpriteAnimation();
     }
 
     private void FixedUpdate() {
@@ -202,6 +205,17 @@ public class PlayerController : Singleton<PlayerController> {
             return;
         }
         Movement();
+    }
+
+    private void UpdateSpriteAnimation() {
+        if (inputMoveVector.magnitude > 0.5) {
+            Anim.speed = 1f;
+            if (isDashing) {
+                Anim.speed = 1.5f;
+            }
+        } else {
+            Anim.speed = 0.5f;
+        }
     }
 
     private void Movement()
