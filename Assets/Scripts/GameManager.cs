@@ -153,9 +153,10 @@ public class GameManager : Singleton<GameManager>
             break;
             case GameState.DropOffTutorial:
             InstructionsManager.Instance.HideCurrent();
-            // InstructionsManager.Instance.();
+            InstructionsManager.Instance.ShowDeliverHere();
             break;
             case GameState.StatScreen:
+            InstructionsManager.Instance.HideCurrent();
             ScoreScreen.Instance.Show();
             break;
             case GameState.StatScreenContinue:

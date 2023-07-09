@@ -28,6 +28,7 @@ public class PlayerController : Singleton<PlayerController> {
     //Private movement variables
     private Vector2 inputMoveVector;
     private Rigidbody2D rb;
+    private BoxCollider2D coll;
     private bool isDashing;
     private bool dashBurst;
     private bool isBiting;
@@ -65,6 +66,7 @@ public class PlayerController : Singleton<PlayerController> {
 
     private void Awake() {
         rb = GetComponent<Rigidbody2D>();
+        coll = GetComponent<BoxCollider2D>();
 
         // Don't want to have Raycast starting from this to hit itself.
         Physics2D.queriesStartInColliders = false;
@@ -330,11 +332,13 @@ public class PlayerController : Singleton<PlayerController> {
         rb.velocity = rb.velocity + new Vector2(-Speed, 0f);
         if (rb.position.x < 9) {
             isAnimatingEntry = false;
+            coll.enabled = true;
         }
     }
 
     public void AnimateEntry() {
         // Face left
+        coll.enabled = false;
         Sprite.transform.rotation = Quaternion.Euler(0f, 180f, 0f);
         isAnimatingEntry = true;
     }

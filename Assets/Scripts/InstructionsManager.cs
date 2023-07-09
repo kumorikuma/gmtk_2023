@@ -19,8 +19,8 @@ public class InstructionsManager : Singleton<InstructionsManager>
     public TextMeshProUGUI CollectHumanText;
     [NonNullField]
     public TextMeshProUGUI MoveDownText;
-    // [NonNullField]
-    // public TextMeshProUGUI DropHumanText;
+    [NonNullField]
+    public TextMeshProUGUI DeliverHereText;
 
     private float fadeTime = 1;
     public List<TextMeshProUGUI> currentlyShown = new List<TextMeshProUGUI>();
@@ -64,6 +64,13 @@ public class InstructionsManager : Singleton<InstructionsManager>
 
     public void ShowMoveDown() {
         ShowText(MoveDownText);
+    }
+
+    public void ShowDeliverHere() {
+        if (DeliverHereText == null) {
+            return;
+        }
+        ShowText(DeliverHereText);
     }
 
     private void ShowText(TextMeshProUGUI text, bool fade = false) {
