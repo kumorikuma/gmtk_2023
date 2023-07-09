@@ -104,15 +104,18 @@ public class PlayerController : Singleton<PlayerController> {
 
         isBiting = !isBiting;
 
-        bool grabbedObject = false;
+        Grabbable grabbedObject = null;
         if (isBiting) {
             grabbedObject = GrabPoint.TryGrab();
+            if (grabbedObject != null && grabbedObject.gameObject.tag == "Human") {
+                GameManager.Instance.HumanGrabbed();
+            }
         } else {
             grabbedObject = GrabPoint.TryRelease();
         }
 
         // Pin the rope to the player
-        if (!grabbedObject && rope != null) {
+        if (grabbedObject == null && rope != null) {
             if (pinnedNode == null) {
                 RopeNode node = rope.GetClosestNode(transform.position);
                 // Prevent the player from grabbing the first node
@@ -148,13 +151,6 @@ public class PlayerController : Singleton<PlayerController> {
             } else {
                 BoatController.SwitchSprites(FishermanAction.Idle);
             }
-        }
-
-        // Grab item
-        if (isBiting) {
-            GrabPoint.TryGrab();
-        } else {
-            GrabPoint.TryRelease();
         }
 
         // Tutorial 

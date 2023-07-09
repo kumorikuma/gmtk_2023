@@ -15,10 +15,10 @@ public class InstructionsManager : Singleton<InstructionsManager>
     public TextMeshProUGUI GrabText;
     [NonNullField]
     public TextMeshProUGUI PullText;
-    // [NonNullField]
-    // public TextMeshProUGUI CollectHumanText;
-    // [NonNullField]
-    // public TextMeshProUGUI MoveDownText;
+    [NonNullField]
+    public TextMeshProUGUI CollectHumanText;
+    [NonNullField]
+    public TextMeshProUGUI MoveDownText;
     // [NonNullField]
     // public TextMeshProUGUI DropHumanText;
 
@@ -58,9 +58,13 @@ public class InstructionsManager : Singleton<InstructionsManager>
         ShowText(PullText, true);
     }
 
-    // public void ShowCollectHuman() {
-    //     ShowText(CollectHumanText);
-    // }
+    public void ShowCollectHuman() {
+        ShowText(CollectHumanText);
+    }
+
+    public void ShowMoveDown() {
+        ShowText(MoveDownText);
+    }
 
     private void ShowText(TextMeshProUGUI text, bool fade = false) {
         text.gameObject.SetActive(true);

@@ -12,7 +12,7 @@ public class GrabController : MonoBehaviour
     void Update() {
     }
 
-    public bool TryGrab() {
+    public Grabbable TryGrab() {
         Vector3 facing = transform.rotation * Vector3.right;
         RaycastHit2D hitCheck = Physics2D.Raycast(grabDetect.position, new Vector2(facing.x, facing.y), rayDist);
         Grabbable grabbable = hitCheck.transform ? hitCheck.transform.gameObject.GetComponent<Grabbable>() : null;
@@ -20,17 +20,18 @@ public class GrabController : MonoBehaviour
         {
             grabbable.Grab(this.transform);
             currentlyGrabbed = grabbable;
-            return true;
+            return currentlyGrabbed;
         }
-        return false;
+        return null;
     }
 
-    public bool TryRelease() {
+    public Grabbable TryRelease() {
         if (currentlyGrabbed != null) {
+            Grabbable result = currentlyGrabbed;
             currentlyGrabbed.Release();
             currentlyGrabbed = null;
-            return true;
+            return result;
         }
-        return false;
+        return null;
     }
 }

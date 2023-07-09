@@ -25,8 +25,10 @@ public class CameraController : Singleton<CameraController> {
     {
         if (AllowGoingDown && player.position.y < transitionY) {
             target = new Vector3(0f, lowerY, 0f);
+            GameManager.Instance.MovedDown();
         } else {
             target = new Vector3(0f, upperY, 0f);
+            GameManager.Instance.MovedUp();
         }
     }
     
