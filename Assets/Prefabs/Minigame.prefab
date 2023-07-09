@@ -1006,9 +1006,12 @@ MonoBehaviour:
   FishermanBar: {fileID: 350045647478924736}
   TopOfBar: {fileID: 350045647001718949}
   StaminaBarFill: {fileID: 350045646542982258}
-  FishermanStaminaDecay: 1
+  FishermanStaminaDecay: 0.1
   FishermanStaminaRecovery: 0.1
   FishermanStamina: 1
+  followSpeed: 0.1
+  followDelay: 0.325
+  fishermanBarSize: 1
 --- !u!1 &350045647775472128
 GameObject:
   m_ObjectHideFlags: 0

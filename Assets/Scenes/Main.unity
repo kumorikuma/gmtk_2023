@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 705507994}
-  m_IndirectSpecularColor: {r: 0.18028352, g: 0.22571376, b: 0.30692244, a: 1}
+  m_IndirectSpecularColor: {r: 0.18028334, g: 0.2257134, b: 0.30692226, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -1021,6 +1021,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 350045647742362640, guid: 4ed41e2279c7bba4e821a0d068e7bf08, type: 3}
+      propertyPath: FishermanStaminaDecay
+      value: 0.1
+      objectReference: {fileID: 0}
     - target: {fileID: 350045647742362641, guid: 4ed41e2279c7bba4e821a0d068e7bf08, type: 3}
       propertyPath: m_RootOrder
       value: 8
@@ -1813,6 +1817,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 460757068, guid: 81692d922befd0e409b1ab9adc73e5fe, type: 3}
+      propertyPath: speed
+      value: -0.03
+      objectReference: {fileID: 0}
     - target: {fileID: 970874243938809422, guid: 81692d922befd0e409b1ab9adc73e5fe, type: 3}
       propertyPath: m_Name
       value: Clouds
@@ -1827,7 +1835,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8325545582264988142, guid: 81692d922befd0e409b1ab9adc73e5fe, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 3.43
+      value: 2.99
       objectReference: {fileID: 0}
     - target: {fileID: 8325545582264988142, guid: 81692d922befd0e409b1ab9adc73e5fe, type: 3}
       propertyPath: m_LocalPosition.z
@@ -1860,6 +1868,22 @@ PrefabInstance:
     - target: {fileID: 8325545582264988142, guid: 81692d922befd0e409b1ab9adc73e5fe, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8938258602374382342, guid: 81692d922befd0e409b1ab9adc73e5fe, type: 3}
+      propertyPath: speed
+      value: -0.03
+      objectReference: {fileID: 0}
+    - target: {fileID: 8938258602558097870, guid: 81692d922befd0e409b1ab9adc73e5fe, type: 3}
+      propertyPath: speed
+      value: -0.03
+      objectReference: {fileID: 0}
+    - target: {fileID: 8938258603778909545, guid: 81692d922befd0e409b1ab9adc73e5fe, type: 3}
+      propertyPath: speed
+      value: -0.03
+      objectReference: {fileID: 0}
+    - target: {fileID: 8938258604340224032, guid: 81692d922befd0e409b1ab9adc73e5fe, type: 3}
+      propertyPath: speed
+      value: -0.03
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 81692d922befd0e409b1ab9adc73e5fe, type: 3}
