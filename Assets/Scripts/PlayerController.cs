@@ -49,6 +49,12 @@ public class PlayerController : MonoBehaviour {
     public Minigame FishingMinigame = null;
     private bool isInFishingMinigame = false;
 
+    // Instructions
+    bool movedUp = false;
+    bool movedDown = false;
+    bool movedRight = false;
+    bool movedLeft = false;
+
     private void Awake() {
         rb = GetComponent<Rigidbody2D>();
 
@@ -58,11 +64,19 @@ public class PlayerController : MonoBehaviour {
 
     public void OnMove(Vector2 moveVector) {
         inputMoveVector = moveVector;
+        movedUp = movedUp || moveVector.y > 0;
+        movedDown = movedDown || moveVector.y < 0;
+        movedRight = movedRight || moveVector.x > 0;
+        movedLeft = movedLeft || moveVector.x < 0;
+        if (movedUp && movedDown && movedRight && movedLeft) {
+            GameManager.Instance.MoveTutorialComplete();
+        }
     }
 
     public void OnDash(bool isPressed) {
         if (isPressed && !isDashing) {
             dashBurst = true;
+            GameManager.Instance.PullTutorialComplete();
         }
         isDashing = isPressed;
     }
@@ -70,8 +84,15 @@ public class PlayerController : MonoBehaviour {
     public void OnBite(bool isPressed) {
         isBiting = isPressed;
 
+        bool grabbedObject = false;
+        if (isBiting) {
+            grabbedObject = GrabPoint.TryGrab();
+        } else {
+            grabbedObject = GrabPoint.TryRelease();
+        }
+
         // Pin the rope to the player
-        if (rope != null) {
+        if (!grabbedObject && rope != null) {
             if (pinnedNode == null) {
                 RopeNode node = rope.GetClosestNode(transform.position);
                 // Prevent the player from grabbing the first node
@@ -102,10 +123,16 @@ public class PlayerController : MonoBehaviour {
             FishingMinigame.ShowMinigame(false);
         }
 
+        // Grab item
         if (isBiting) {
             GrabPoint.TryGrab();
         } else {
             GrabPoint.TryRelease();
+        }
+
+        // Tutorial 
+        if (pinnedNode != null) {
+            GameManager.Instance.GrabTutorialComplete();
         }
     }
 

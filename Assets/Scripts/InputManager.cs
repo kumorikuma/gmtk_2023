@@ -20,6 +20,10 @@ public class InputManager : MonoBehaviour {
         PlayerManager.Instance.PlayerController.OnBite(value.isPressed);
     }
 
+    void OnAnyKey() {
+        GameManager.Instance.AnyKeyPressed();
+    }
+
     void OnJoystickLook(InputValue value) {
     }
 
