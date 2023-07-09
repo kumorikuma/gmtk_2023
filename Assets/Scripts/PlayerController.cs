@@ -112,9 +112,12 @@ public class PlayerController : Singleton<PlayerController> {
         if (success) {
             BoatController.SwitchSprites(FishermanAction.Fall);
             isBiting = false;
+            rope.UnpinNode(pinnedNode);
+            pinnedNode = null;
             // Unpin the rope and let it free fall for a bit, then make it disappear.
             rope.UnpinNode(rope.GetFirstNode());
-            Invoke("FadeoutRope", 5.0f);
+            rope.GravityForce = new Vector3(0, -0.01f, 0);
+            Invoke("FadeoutRope", 2.0f);
         } else {
             BoatController.SwitchSprites(FishermanAction.Confused);
             Invoke("ResetConfusedToIdle", 5.0f);
