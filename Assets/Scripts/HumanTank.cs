@@ -5,6 +5,7 @@ using UnityEngine;
 public class HumanTank : MonoBehaviour
 {
     public int HumanCount = 0;
+    public GameObject humanSpritePrefab;
 
     private void Awake() {
     }
@@ -25,6 +26,10 @@ public class HumanTank : MonoBehaviour
         HumanCount += 1;
         Debug.Log("Human added");
         GameManager.Instance.HumanDelivered();
+
+        Vector3 offset = new Vector3(Random.Range(0f, 6.5f), Random.Range(0f, 0.2f), 0f);
+        GameObject go = Instantiate(humanSpritePrefab, this.transform.position + offset, Quaternion.identity);
+        go.transform.parent = this.transform;
     }
 
 }
