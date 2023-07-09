@@ -103,6 +103,19 @@ public class GameManager : Singleton<GameManager>
             SpawnNewBoat();
             CameraController.Instance.AllowGoingDown = false;
             playerController.AllowGoingDown = false;
+            // Human Tank stuff
+            switch (HumanTank.Instance.HumanCount) {
+                case 1:
+                    HumanTank.Instance.NewGuyObj.SetActive(false);
+                    HumanTank.Instance.OldManObj.SetActive(true);
+                    break;
+                case 2:
+                    HumanTank.Instance.NewGuyObj.SetActive(false);
+                    HumanTank.Instance.TVGuyObj.SetActive(true);
+                    break;
+                default:
+                    break;
+            }
         }
     }
 
