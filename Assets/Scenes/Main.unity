@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 705507994}
-  m_IndirectSpecularColor: {r: 0.18028334, g: 0.2257134, b: 0.30692226, a: 1}
+  m_IndirectSpecularColor: {r: 0.18028352, g: 0.22571376, b: 0.30692244, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -194,21 +194,9 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 473826367}
     - target: {fileID: 6898316236896007616, guid: a7d019095a95e9941bd3bfe795750eda, type: 3}
-      propertyPath: Sprite
-      value: 
-      objectReference: {fileID: 1866677236}
-    - target: {fileID: 6898316236896007616, guid: a7d019095a95e9941bd3bfe795750eda, type: 3}
-      propertyPath: DashSpeed
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 6898316236896007616, guid: a7d019095a95e9941bd3bfe795750eda, type: 3}
       propertyPath: BoatController
       value: 
       objectReference: {fileID: 123656496}
-    - target: {fileID: 6898316236896007616, guid: a7d019095a95e9941bd3bfe795750eda, type: 3}
-      propertyPath: DashBurstSpeed
-      value: 5
-      objectReference: {fileID: 0}
     - target: {fileID: 6898316236896007616, guid: a7d019095a95e9941bd3bfe795750eda, type: 3}
       propertyPath: fishermanAlert
       value: 
@@ -223,11 +211,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6898316236896007617, guid: a7d019095a95e9941bd3bfe795750eda, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 0
+      value: 25.5
       objectReference: {fileID: 0}
     - target: {fileID: 6898316236896007617, guid: a7d019095a95e9941bd3bfe795750eda, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 1
+      value: -7
       objectReference: {fileID: 0}
     - target: {fileID: 6898316236896007617, guid: a7d019095a95e9941bd3bfe795750eda, type: 3}
       propertyPath: m_LocalPosition.z
@@ -1157,11 +1145,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0048df8eb23874e4aba06473f62b521d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
---- !u!1 &1866677236 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 6898316236647326765, guid: a7d019095a95e9941bd3bfe795750eda, type: 3}
-  m_PrefabInstance: {fileID: 386666975}
-  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &1880535207
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -1235,6 +1218,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 614708943}
     m_Modifications:
+    - target: {fileID: 2752779249983927838, guid: f9dcbdcc0a2f8434e94e792feeb10e39, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 2752779251160162312, guid: f9dcbdcc0a2f8434e94e792feeb10e39, type: 3}
       propertyPath: m_Name
       value: Environment
