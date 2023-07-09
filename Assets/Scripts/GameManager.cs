@@ -14,7 +14,8 @@ public class GameManager : Singleton<GameManager>
         CollectReward,
         MoveDownTutorial,
         DropOffTutorial,
-        StatScreen
+        StatScreen,
+        StatScreenContinue
     }
 
     [NonNullField]
@@ -44,6 +45,9 @@ public class GameManager : Singleton<GameManager>
         // Any key to start game
         if (currentState == GameState.Title) {
             GotoGameState(GameState.MoveTutorial);
+        } else if (currentState == GameState.StatScreenContinue) {
+            ScoreScreen.Instance.Hide();
+            GotoGameState(GameState.Game);
         }
     }
 
@@ -89,18 +93,12 @@ public class GameManager : Singleton<GameManager>
     }
 
     public void HumanDelivered() {
-        if (currentState == GameState.DropOffTutorial) {
-            // TODO: implement stat screen
-            GotoGameState(GameState.Game);
-            // GotoGameState(GameState.StatScreen);
-        }
+        GotoGameState(GameState.StatScreen);
     }
 
-    public void StatScreenClosed() {
-        if (currentState == GameState.StatScreen) {
-            GotoGameState(GameState.Game);
-        }
-    }
+    public void StatScreenReadyToContinue() {
+        GotoGameState(GameState.StatScreenContinue);
+    } 
 
     private void GotoGameState(GameState state) {
         Debug.Log($"Go to game state {state}");
@@ -141,6 +139,10 @@ public class GameManager : Singleton<GameManager>
             // InstructionsManager.Instance.();
             break;
             case GameState.StatScreen:
+            ScoreScreen.Instance.Show();
+            break;
+            case GameState.StatScreenContinue:
+            // No change, but ready to move on
             break;
             default:
             Debug.LogError($"Reached state {state}");
