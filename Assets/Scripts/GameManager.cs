@@ -128,24 +128,21 @@ public class GameManager : Singleton<GameManager>
         }
 
         switch (boatBehavior) {
-            case 0:
-                Debug.Log("Spawn 0");
+            case 1:
                 minigame.fishermanBarSize = 2.0f;
                 minigame.followDelay = 0.325f;
                 minigame.FishermanStaminaDecay = 0.2f;
                 minigame.FishermanStaminaRecovery = 0.2f;
                 break;
-            case 1:
-                Debug.Log("Spawn 1");
-                minigame.fishermanBarSize = 3.0f;
-                minigame.followDelay = 0.5f;
+            case 0:
+                minigame.fishermanBarSize = 0.7f;
+                minigame.followDelay = 0.01f;
                 minigame.FishermanStaminaDecay = 0.2f;
-                minigame.FishermanStaminaRecovery = 0.2f;
+                minigame.FishermanStaminaRecovery = 0.5f;
                 break;
             case 2:
-                Debug.Log("Spawn 2");
-                minigame.fishermanBarSize = 0.5f;
-                minigame.followDelay = 0.15f;
+                minigame.fishermanBarSize = 3.0f;
+                minigame.followDelay = 0.45f;
                 minigame.FishermanStaminaDecay = 0.2f;
                 minigame.FishermanStaminaRecovery = 0.2f;
                 break;
