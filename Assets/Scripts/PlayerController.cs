@@ -60,8 +60,16 @@ public class PlayerController : MonoBehaviour {
         if (rope != null) {
             if (pinnedNode == null) {
                 RopeNode node = rope.GetClosestNode(transform.position);
-                rope.PinNodeTo(node, transform);
-                pinnedNode = node;
+                // Prevent the player from grabbing the first node
+                if (node == rope.GetFirstNode()) {
+                    node = rope.GetNodeAt(1);
+                }
+                // Only allow the player to grab the rope if they're within a certain distance
+                float distance = (node.transform.position - transform.position).magnitude;
+                if (distance < 0.5f) {
+                    rope.PinNodeTo(node, transform);
+                    pinnedNode = node;
+                }
             } else {
                 rope.UnpinNode(pinnedNode);
                 pinnedNode = null;
@@ -102,14 +110,13 @@ public class PlayerController : MonoBehaviour {
         Vector3 newVelocity = new Vector3(newXVelocity, newYVelocity, 0);
 
         // Movement is constrained by rope
-        if (IsBiting) {
+        if (IsBiting && pinnedNode != null) {
             float ropeStretch = rope.GetRopeStretchFromStartTo(pinnedNode);
             bool isRopeStretched = ropeStretch > 1.0f;
 
             float ropeNormalSize = rope.GetRopeNormalSizeFromStartTo(pinnedNode);
             float ropeMaxStretch = 2.0f;
             float pctStretched = Mathf.Clamp((ropeStretch - 1.0f) / (ropeMaxStretch - 1.0f), 0, 1);
-            Debug.Log(pctStretched);
             float ropeMaxSize = ropeMaxStretch * ropeNormalSize;
             Vector2 ropeAnchorPos2d = new Vector2(rope.GetFirstNode().transform.position.x, rope.GetFirstNode().transform.position.y);
             Vector2 ropeAnchorToPlayer = rb.position - ropeAnchorPos2d;
@@ -128,9 +135,11 @@ public class PlayerController : MonoBehaviour {
             //     }
             // }
 
-            // Gradually slow down the player
+            // Gradually slow down the player and apply a counter force if they're not moving
             if (isRopeStretched && distanceToRopeAnchor > ropeNormalSize) {
-                newVelocity = Vector3.Slerp(Vector3.zero, newVelocity, 1.0f - pctStretched);
+                Vector3 maxCounterAcceleration = -ropeAnchorToPlayer.normalized * 1.0f;
+                Vector3 counterAcceleration = Vector3.Slerp(Vector3.zero, maxCounterAcceleration, pctStretched);
+                newVelocity += counterAcceleration;
             }
         }
 
