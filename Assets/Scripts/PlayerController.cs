@@ -22,6 +22,8 @@ public class PlayerController : Singleton<PlayerController> {
 
     public bool AllowGoingDown = false;
     public float LowestYAllowedOnTopScreen = -12;
+    public float LowestYAllowedOnBottomScreen = -24;
+    public float XBound = 18;
 
     //Private movement variables
     private Vector2 inputMoveVector;
@@ -37,7 +39,7 @@ public class PlayerController : Singleton<PlayerController> {
 
 
     // Movement animation
-    float lastRotationY = 0f;
+    float lastRotationY = 180f;
     float rotationSmooth = 5.0f;
     float tiltAngle = 30.0f;
 
@@ -59,6 +61,9 @@ public class PlayerController : Singleton<PlayerController> {
     bool movedDown = false;
     bool movedRight = false;
     bool movedLeft = false;
+
+    // Animate entry
+    bool isAnimatingEntry = false;
 
     private void Awake() {
         rb = GetComponent<Rigidbody2D>();
@@ -155,10 +160,16 @@ public class PlayerController : Singleton<PlayerController> {
     }
 
     private void Update() {
-        UpdateRotations();
+        if (!isAnimatingEntry) {
+            UpdateRotations();
+        }
     }
 
     private void FixedUpdate() {
+        if (isAnimatingEntry) {
+            AnimateMovement();
+            return;
+        }
         Movement();
     }
 
@@ -272,13 +283,30 @@ public class PlayerController : Singleton<PlayerController> {
         // Prevent going down before beating minigame
         if (!AllowGoingDown && rb.position.y < LowestYAllowedOnTopScreen) {
             newVelocity.y = Mathf.Max(0, newVelocity.y);
+        } else if (rb.position.y < LowestYAllowedOnBottomScreen) {
+            newVelocity.y = Mathf.Max(0, newVelocity.y);
         }
-
+        // Left/right boundaries
+        if (rb.position.x < -XBound) {
+            newVelocity.x = Mathf.Max(0, newVelocity.x);
+        } else if (rb.position.x > XBound) {
+            newVelocity.x = Mathf.Min(0, newVelocity.x);
+        }
         rb.velocity = newVelocity;
     }
 
-    void LateUpdate() {
+    private void AnimateMovement() {
+        // During entry animation, just move left until a spot
+        rb.velocity = rb.velocity + new Vector2(-Speed, 0f);
+        if (rb.position.x < 9) {
+            isAnimatingEntry = false;
+        }
+    }
 
+    public void AnimateEntry() {
+        // Face left
+        Sprite.transform.rotation = Quaternion.Euler(0f, 180f, 0f);
+        isAnimatingEntry = true;
     }
 
     private void UpdateRotations() {

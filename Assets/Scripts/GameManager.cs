@@ -69,7 +69,7 @@ public class GameManager : Singleton<GameManager>
         switch (currentState) {
             case GameState.Title:
             case GameState.MoveTutorial:
-            playerController.gameObject.SetActive(true);
+            playerController.AnimateEntry();
             InstructionsManager.Instance.HideCurrent();
             InstructionsManager.Instance.ShowMove();
             break;

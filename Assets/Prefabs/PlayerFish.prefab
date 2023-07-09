@@ -555,11 +555,13 @@ MonoBehaviour:
   Sprite: {fileID: 6898316236647326765}
   GrabPoint: {fileID: 5364480918203008662}
   Speed: 1
-  DashSpeed: 3
+  DashSpeed: 1
   DashBurstSpeed: 5
   Gravity: 1
   AllowGoingDown: 0
   LowestYAllowedOnTopScreen: -12
+  LowestYAllowedOnBottomScreen: -24
+  XBound: 18
   rope: {fileID: 0}
   pinnedNode: {fileID: 0}
   fishermanAlert: {fileID: 0}
