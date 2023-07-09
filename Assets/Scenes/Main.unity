@@ -1383,13 +1383,9 @@ PrefabInstance:
       value: GameManager
       objectReference: {fileID: 0}
     - target: {fileID: 4072501996008102230, guid: dbbebc1b2a726b04a9794529e982e5ac, type: 3}
-      propertyPath: TitleCard
+      propertyPath: minigame
       value: 
-      objectReference: {fileID: 0}
-    - target: {fileID: 4072501996008102230, guid: dbbebc1b2a726b04a9794529e982e5ac, type: 3}
-      propertyPath: BoatPrefab
-      value: 
-      objectReference: {fileID: 2513805328155859591, guid: 6d76370ef697a9442bd4572d116b4e2e, type: 3}
+      objectReference: {fileID: 1383006570}
     - target: {fileID: 4072501996008102230, guid: dbbebc1b2a726b04a9794529e982e5ac, type: 3}
       propertyPath: playerController
       value: 
