@@ -6,6 +6,7 @@ public enum FishermanAction {
     Idle,
     Pull,
     Confused,
+    Fall,
 }
 
 public class Boat : MonoBehaviour {
@@ -15,6 +16,8 @@ public class Boat : MonoBehaviour {
     public GameObject FishermanPull;
     [NonNullField]
     public GameObject FishermanConfused;
+    [NonNullField]
+    public GameObject FishermanFall;
     [NonNullField]
     public GameObject RodIdle;
     [NonNullField]
@@ -27,6 +30,7 @@ public class Boat : MonoBehaviour {
         FishermanIdle.SetActive(false);
         FishermanPull.SetActive(false);
         FishermanConfused.SetActive(false);
+        FishermanFall.SetActive(false);
         RodIdle.SetActive(false);
         RodPull.SetActive(false);
 
@@ -42,6 +46,9 @@ public class Boat : MonoBehaviour {
             case FishermanAction.Confused:
                 FishermanConfused.SetActive(true);
                 RodIdle.SetActive(true);
+                break;
+            case FishermanAction.Fall:
+                FishermanFall.SetActive(true);
                 break;
         }
     }

@@ -231,6 +231,8 @@ public class PlayerController : Singleton<PlayerController> {
                 fishermanAlert.ShowAlert(false);
                 FishingMinigame.SetFishermanFollow(true);
                 BoatController.SwitchSprites(FishermanAction.Pull);
+                // BoatController.SwitchSprites(FishermanAction.Fall); // TODO: Debug
+
                 // Let go of the line at the right time after the fisherman is tired to win!
 
                 // Dashing / pulling more will make the fish icon go higher
@@ -246,7 +248,8 @@ public class PlayerController : Singleton<PlayerController> {
             if (isInFishingMinigame) {
                 FishingMinigame.UpdateStaminaBar();
                 if (FishingMinigame.FishermanStamina <= 0.0f) {
-                    Debug.Log("WIN GAME!!!!");
+                    BoatController.SwitchSprites(FishermanAction.Fall);
+                    isInFishingMinigame = false; // TODO: End minigame
                 }
             }
 
