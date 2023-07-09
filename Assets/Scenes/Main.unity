@@ -159,6 +159,17 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &133205529 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 133205529, guid: 6d76370ef697a9442bd4572d116b4e2e, type: 3}
+  m_PrefabInstance: {fileID: 1880535207}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: afd69321f2a0af9418989f7977431265, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1001 &386666975
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -186,6 +197,10 @@ PrefabInstance:
       propertyPath: fishermanAlert
       value: 
       objectReference: {fileID: 1270782163}
+    - target: {fileID: 6898316236896007616, guid: a7d019095a95e9941bd3bfe795750eda, type: 3}
+      propertyPath: FishingMinigame
+      value: 
+      objectReference: {fileID: 133205529}
     - target: {fileID: 6898316236896007617, guid: a7d019095a95e9941bd3bfe795750eda, type: 3}
       propertyPath: m_RootOrder
       value: 0
@@ -950,7 +965,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2513805328155859589, guid: 6d76370ef697a9442bd4572d116b4e2e, type: 3}
       propertyPath: m_LocalPosition.x
-      value: -7.04
+      value: -11.56
       objectReference: {fileID: 0}
     - target: {fileID: 2513805328155859589, guid: 6d76370ef697a9442bd4572d116b4e2e, type: 3}
       propertyPath: m_LocalPosition.y
