@@ -1313,6 +1313,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Boat
       objectReference: {fileID: 0}
+    - target: {fileID: 5150251481429285786, guid: 6d76370ef697a9442bd4572d116b4e2e, type: 3}
+      propertyPath: m_text
+      value: "Use the [K] \u25BA\nkey to grab \u25BA"
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 6d76370ef697a9442bd4572d116b4e2e, type: 3}
 --- !u!4 &2043538407 stripped

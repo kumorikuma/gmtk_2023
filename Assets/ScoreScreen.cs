@@ -65,7 +65,7 @@ public class ScoreScreen : Singleton<ScoreScreen>
             case 1:
             return "One's too lonely. I must collect more to keep it company.";
             case 2:
-            return "Another amatuer fisherman. Let's get a few more.";
+            return "Another amateur fisherman. Let's get a few more.";
             case 3:
             return "This one lost its land-walking device.";
             case 4:

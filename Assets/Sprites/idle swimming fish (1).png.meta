@@ -1,5 +1,5 @@
 fileFormatVersion: 2
-guid: 2d2e608f1374904438d650a7ad7ab418
+guid: 3e2cd02ff2cc6f745a3f119ed1d8ad5e
 TextureImporter:
   internalIDToNameTable: []
   externalObjects: {}
@@ -153,7 +153,7 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: idle swimming fish_0
+      name: idle swimming fish (1)_0
       rect:
         serializedVersion: 2
         x: 4
@@ -167,14 +167,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: d20d0a8272c4d114c8af85a66fc9a326
-      internalID: 543249956
+      spriteID: 9be8e535442103e4794661c4cdf6ee90
+      internalID: -2134634706
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: idle swimming fish_1
+      name: idle swimming fish (1)_1
       rect:
         serializedVersion: 2
         x: 107
@@ -188,14 +188,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 3b3e2e8b257dd86408ff57c9b57ee8db
-      internalID: -90139690
+      spriteID: 7aed393255714304d9933df84750c78d
+      internalID: -1355449285
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: idle swimming fish_2
+      name: idle swimming fish (1)_2
       rect:
         serializedVersion: 2
         x: 211
@@ -209,8 +209,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: dfeb16a97de3b11438e727f952217116
-      internalID: 2143867028
+      spriteID: d73320d25f79da244a56408674242c2f
+      internalID: -1449367553
       vertices: []
       indices: 
       edges: []
@@ -218,7 +218,7 @@ TextureImporter:
     outline: []
     physicsShape: []
     bones: []
-    spriteID: cda44a9694fa6f546ad6443b1958b281
+    spriteID: 96b0b79973997de4da6336e61e03111b
     internalID: 0
     vertices: []
     indices: 
@@ -226,9 +226,9 @@ TextureImporter:
     weights: []
     secondaryTextures: []
     nameFileIdTable:
-      idle swimming fish_0: 543249956
-      idle swimming fish_1: -90139690
-      idle swimming fish_2: 2143867028
+      idle swimming fish (1)_0: -2134634706
+      idle swimming fish (1)_1: -1355449285
+      idle swimming fish (1)_2: -1449367553
   spritePackingTag: 
   pSDRemoveMatte: 0
   pSDShowRemoveMatteOption: 0
