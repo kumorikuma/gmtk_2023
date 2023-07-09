@@ -5,6 +5,7 @@ using UnityEngine;
 public enum FishermanAction {
     Idle,
     Pull,
+    Confused,
 }
 
 public class Boat : MonoBehaviour {
@@ -13,13 +14,19 @@ public class Boat : MonoBehaviour {
     [NonNullField]
     public GameObject FishermanPull;
     [NonNullField]
+    public GameObject FishermanConfused;
+    [NonNullField]
     public GameObject RodIdle;
     [NonNullField]
     public GameObject RodPull;
 
+    public FishermanAction CurrentAction = FishermanAction.Idle;
+
     public void SwitchSprites(FishermanAction action) {
+        CurrentAction = action;
         FishermanIdle.SetActive(false);
         FishermanPull.SetActive(false);
+        FishermanConfused.SetActive(false);
         RodIdle.SetActive(false);
         RodPull.SetActive(false);
 
@@ -31,6 +38,10 @@ public class Boat : MonoBehaviour {
             case FishermanAction.Pull:
                 FishermanPull.SetActive(true);
                 RodPull.SetActive(true);
+                break;
+            case FishermanAction.Confused:
+                FishermanConfused.SetActive(true);
+                RodIdle.SetActive(true);
                 break;
         }
     }

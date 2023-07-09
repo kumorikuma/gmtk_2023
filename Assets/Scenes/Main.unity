@@ -1169,6 +1169,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 369971146, guid: 6d76370ef697a9442bd4572d116b4e2e, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 3.15
+      objectReference: {fileID: 0}
     - target: {fileID: 2513805328155859589, guid: 6d76370ef697a9442bd4572d116b4e2e, type: 3}
       propertyPath: m_RootOrder
       value: 4
@@ -1216,10 +1220,6 @@ PrefabInstance:
     - target: {fileID: 2513805328155859591, guid: 6d76370ef697a9442bd4572d116b4e2e, type: 3}
       propertyPath: m_Name
       value: Boat
-      objectReference: {fileID: 0}
-    - target: {fileID: 5150251481429285786, guid: 6d76370ef697a9442bd4572d116b4e2e, type: 3}
-      propertyPath: m_text
-      value: "Use the [K] \nkey to grab ->"
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 6d76370ef697a9442bd4572d116b4e2e, type: 3}

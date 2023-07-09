@@ -58,6 +58,8 @@ public class Minigame : MonoBehaviour {
         if (!isVisible) {
             SetFishermanFollow(false);
         }
+        // Reset the initial position
+        FishermanBar.transform.position = Vector3.Lerp(transform.position, TopOfBar.transform.position, 0.6f);
     }
 
     public void SetFishermanFollow(bool shouldFollow) {

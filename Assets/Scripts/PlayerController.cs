@@ -86,6 +86,12 @@ public class PlayerController : Singleton<PlayerController> {
         isDashing = isPressed;
     }
 
+    private void ResetConfusedToIdle() {
+        if (BoatController.CurrentAction == FishermanAction.Confused) {
+            BoatController.SwitchSprites(FishermanAction.Idle);
+        }
+    }
+
     public void OnBite(bool isPressed) {
         isBiting = isPressed;
 
@@ -123,10 +129,16 @@ public class PlayerController : Singleton<PlayerController> {
             FishingMinigame.ShowMinigame(true);
             fishermanAlert.SetAlertness(0);
         } else if (!isBiting) {
-            isInFishingMinigame = false;
             fishermanAlert.ShowAlert(false);
             FishingMinigame.ShowMinigame(false);
-            BoatController.SwitchSprites(FishermanAction.Idle);
+            if (isInFishingMinigame) {
+                // Failed the minigame
+                isInFishingMinigame = false;
+                BoatController.SwitchSprites(FishermanAction.Confused);
+                Invoke("ResetConfusedToIdle", 5.0f);
+            } else {
+                BoatController.SwitchSprites(FishermanAction.Idle);
+            }
         }
 
         // Grab item
